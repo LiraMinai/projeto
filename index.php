@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Teste</title>
+    <title></title>
 </head>
 <body>
     <div class="topo"></div>
-    <h3>Testando</h3>
-    <h6>oi</h6>
+    <h3></h3>
+    <h6></h6>
 </body>
 </html>
