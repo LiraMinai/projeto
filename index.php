@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Teste</title>
+    <title></title>
 </head>
 <body>
     <div class="topo">
