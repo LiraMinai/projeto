@@ -7,10 +7,10 @@
 </head>
 <body>
     <div class="wave">
-        <h1>YDUTS</h1>
-        <h2>Pronto para começar sua jornada?</h2>
+        <h1 class="texto">YDUTS</h1>
+        <h2 class="texto">Pronto para começar sua jornada?</h2>
         <img src="imagens/logo.png">
-        <p>Cadastre-se e crie seu personagem para que, juntos, possam se aventurar nos estudos.</p>
+        <p class="texto">Cadastre-se e crie seu personagem para que, juntos, possam se aventurar nos estudos.</p>
     </div>
     <div class="botoes">
         <button onclick="window.location.href='entrar.php'">ENTRAR</button>
