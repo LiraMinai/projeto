@@ -1,12 +1,15 @@
 body {
-    margin: 0;
-    background-color: #2b124c;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(#6a4fcf, #2b1f66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
 }
-.topo {
-    width: 120%;
-    height: 600px;
-    background: #6a4d9a; 
-    
-    border-bottom-left-radius: 50% 100%;
-    border-bottom-right-radius: 50% 100%;
+
+.container {
+  text-align: center;
+  color: white;
+  max-width: 500px;
 }
