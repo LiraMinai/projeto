@@ -1,7 +1,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(#6a4fcf, #2b1f66);
+  background:#2b124c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,4 +12,14 @@ body {
   text-align: center;
   color: white;
   max-width: 500px;
+}
+.wave {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  background: #7b61ff;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  z-index: -1;
 }
