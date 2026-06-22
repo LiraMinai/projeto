@@ -67,6 +67,15 @@ body{
     line-height: 1.4;
 }
 
+.textodif{
+    font-family: 'FonteTexto';
+    color: #5f4780;
+    font-size: 22.5px;
+    max-width: 687.5px;
+    margin-top: 25px;
+    line-height: 1.4;
+}
+
 .botoes{
     display: flex;
     flex-direction: column;
