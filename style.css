@@ -1,55 +1,94 @@
 @font-face {
     font-family: 'FonteYTUDS';
-    src: url('fontes/ArchivoBlack-Regular.ttf') format('woff2');
-}
-@font-face {
-    font-family: 'FonteTexto';
-    src: url('fontes/Questrial-Regular.ttf') format('woff2');
+    src: url('fontes/ArchivoBlack-Regular.ttf');
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  background:#2b124c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
+@font-face {
+    font-family: 'FonteTexto';
+    src: url('fontes/Questrial-Regular.ttf');
 }
-.wave {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 65%;
-  background:#5f4780;
-  border-bottom-left-radius: 50% 70%;
-  border-bottom-right-radius: 50% 70%;
-  z-index: -1;
-  text-align: center;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body{
+    background: #2b124c;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.wave{
+    width: 120%;
+    height: 575px;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: #5f4780;
+
+    border-bottom-left-radius: 50% 100%;
+    border-bottom-right-radius: 50% 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 112.5px;
+    margin-top: 25px;
+}
+
+.subtitulo{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 30px;
+    margin-top: 12.5px;
+}
+
+.wave img{
+    width: 150px;
+    margin-top: 31.25px;
+}
+
+.texto{
+    font-family: 'FonteTexto';
+    color: #f5ecd2;
+    font-size: 22.5px;
+    text-align: center;
+    max-width: 687.5px;
+    margin-top: 25px;   
+    line-height: 1.4;
+}
+
 .botoes{
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    gap: 20px; 
-    margin-top: 500px;
+    gap: 25px; 
+    margin-top: 43.75px;
 }
-button {
-  padding: 10px 20px;
-  font-size: 30px;
-  color: #fff;
-  background-color: #5f4780;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+
+button{
+    width: 387.5px;
+    height: 75px;
+    background: #6d5492;
+    color: #2b124c;
+
+    border: none;
+    border-radius: 18.75px;
+
+    font-family: 'FonteYTUDS';
+    font-size: 35px; 
+    cursor: pointer;
 }
-.titulo {
-  color:#f5ecd2;
-  font-size: 24px;
-  margin-bottom: 20px;
-  font-family: 'FonteYTUDS', sans-serif;
-}
-.texto {
-  color:#f5ecd2;
-  font-family: 'FonteTexto', sans-serif; 
+
+button:hover{
+    opacity: 0.9;
 }
