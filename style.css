@@ -1,10 +1,6 @@
 @font-face {
     font-family: 'FonteYTUDS';
-    src: url('fontes/ArchivoBlack-Regular.ttf') format('woff2');
-}
-@font-face {
-    font-family: 'FonteTexto';
-    src: url('fontes/OpenSans-Bold.woff') format('woff2');
+    src: url('fontes/ArchivoBlack-Regular.ttf');
 }
 
 @font-face {
@@ -47,7 +43,6 @@ body{
     color: #f5ecd2;
     font-size: 112.5px;
     margin-top: 25px;
-}
 
 .subtitulo{
     font-family: 'FonteYTUDS';
@@ -67,7 +62,7 @@ body{
     font-size: 22.5px;
     text-align: center;
     max-width: 687.5px;
-    margin-top: 25px;   
+    margin-top: 25px;
     line-height: 1.4;
 }
 
@@ -75,34 +70,22 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px; 
+    gap: 25px;  
     margin-top: 43.75px;
 }
 
 button{
     width: 387.5px;
-    height: 75px;
+    height: 75px; 
     background: #6d5492;
     color: #2b124c;
-
     border: none;
     border-radius: 18.75px;
-
     font-family: 'FonteYTUDS';
-    font-size: 35px; 
+    font-size: 35px;
     cursor: pointer;
 }
-.titulo {
-  color:#f5ecd2;
-  font-size: 24px;
-  margin-bottom: 20px;
-  font-family: 'FonteYTUDS', sans-serif;
-}
-.texto {
-  color:#f5ecd2;
-  font-family: 'FonteTexto', sans-serif; 
-}
-.textodif{
-  color: #775f99;
-  font-family: 'FonteTexto', sans-serif;
+
+button:hover{
+    opacity: 0.9;
 }
