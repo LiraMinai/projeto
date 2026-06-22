@@ -2,6 +2,10 @@
     font-family: 'FonteYTUDS';
     src: url('fontes/ArchivoBlack-Regular.ttf') format('woff2');
 }
+@font-face {
+    font-family: 'FonteTexto';
+    src: url('fontes/Questrial-Regular.ttf') format('woff2');
+}
 
 body {
   margin: 0;
@@ -39,9 +43,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-.texto {
+.titulo {
   color:#f5ecd2;
   font-size: 24px;
   margin-bottom: 20px;
   font-family: 'FonteYTUDS', sans-serif;
+}
+.texto {
+  color:#f5ecd2;
+  font-family: 'FonteTexto', sans-serif; 
 }
