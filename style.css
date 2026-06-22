@@ -4,7 +4,7 @@
 }
 @font-face {
     font-family: 'FonteTexto';
-    src: url('fontes/Questrial-Regular.ttf') format('woff2');
+    src: url('fontes/OpenSans-Bold.woff') format('woff2');
 }
 
 body {
@@ -52,4 +52,8 @@ button {
 .texto {
   color:#f5ecd2;
   font-family: 'FonteTexto', sans-serif; 
+}
+.textodif{
+  color: #775f99;
+  font-family: 'FonteTexto', sans-serif;
 }
