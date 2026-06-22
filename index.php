@@ -8,7 +8,7 @@
 <body>
     <div class="wave">
         <h1 class="titulo">YDUTS</h1>
-        <h2 class="titulo">Pronto para começar sua jornada?</h2>
+        <h2 class="subtitulo">Pronto para começar sua jornada?</h2>
         <img src="imagens/logo.png">
         <p class="texto">Cadastre-se e crie seu personagem para que, juntos, possam se aventurar nos estudos.</p>
     </div>
