@@ -38,11 +38,29 @@ body{
     align-items: center;
 }
 
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-logo{
+    width: 150px;
+    float: left;
+    margin-right: 15px;
+}
+
+.logo{
+    width: 800px;
+}
+
 .titulo{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
     font-size: 112.5px;
     margin-top: 25px;
+    width: 550px;
+    float: left;
+    
 }
 
 .subtitulo{
@@ -98,4 +116,16 @@ button{
 
 button:hover{
     opacity: 0.9;
+}
+
+.questionario{
+   width: 387.5px;
+    height: 75px; 
+    background: #6d5492;
+    color: #2b124c;
+    border: none;
+    border-radius: 18.75px;
+    font-family: 'FonteYTUDS';
+    font-size: 1000px;
+    cursor: pointer;
 }

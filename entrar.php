@@ -34,14 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Entrar</title>
 </head>
 <body>
-    <img src="imagens/logo.png">
+    <header>
+<div class= "logo">
+    <img class='img-logo' src="imagens/logo.png">
     <h1 class="titulo">YDUTS</h1>
+</div>
     <h1 class="titulo">ENTRAR</h1>
+
+</header>
     <form method="POST">
         <p class="textodif" name="email">E-mail</p>
-        <input type="text">
+        <input class= "questionario" type="text">
         <p class="textodif" name="senha">Senha</p>
-        <input type="password">
+        <input class= "questionario" type="password">
         <br><br>
         <button type="submit">Entrar</button>
     </form>
