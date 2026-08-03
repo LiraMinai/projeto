@@ -25,11 +25,11 @@
         <input type="text" name="emailUsuario">
         <p class="textodif">Senha</p>
         <input type="password" name="senhaUsuario">
-  
     </div>
 
     <div class="faltapouco">
         <p class="textodif">Falta pouco para você começar sua aventura!</p>
+        <br>
     </div>
 
     <div class="centralizar">
