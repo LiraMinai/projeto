@@ -187,3 +187,12 @@ button:hover{
     align-items: center;    
     min-height: 70px;
 }
+
+input{
+    width: 500px;     
+    height: 55px;      
+    font-size: 22px;   
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
