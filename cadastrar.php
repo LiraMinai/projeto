@@ -29,9 +29,9 @@
 
     <div class="faltapouco">
         <p class="textodif">Falta pouco para você começar sua aventura!</p>
-        <br>
+    
     </div>
-
+    <br>
     <div class="centralizar">
         <button type="submit">Prosseguir</button>
     </form>
