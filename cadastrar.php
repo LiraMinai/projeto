@@ -9,6 +9,7 @@
     <img src="imagens/logo.png">
     <h1 class="titulo">YDUTS</h1>
     <h1 class="titulo">CADASTRO</h1>
+    <div class="centralizar">
     <form method="POST">
         <p class="textodif">Nome</p>
         <input type="text" name="nomeUsuario">
@@ -19,10 +20,11 @@
         <p class="textodif">Senha</p>
         <input type="password" name="senhaUsuario">
         <br><br>
-        <p class="textodif">Falta pouco para você começar sua aventura.</p>
+        <p class="textodif">Falta pouco para você começar sua aventura!</p>
         <br><br>
         <button type="submit">Prosseguir</button>
     </form>
+    </div>
     <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
