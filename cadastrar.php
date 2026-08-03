@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<header class="cabeçalho">
+<header class="cabecalho">
     <div class="logo">
         <img src="imagens/logo.png" alt="Logo">
         <h1 class="tituloCad">YDUTS</h1>
