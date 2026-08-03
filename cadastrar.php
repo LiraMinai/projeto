@@ -7,8 +7,8 @@
 </head>
 <body>
     <img src="imagens/logo.png">
-    <h1 class="titulo">YDUTS</h1>
-    <h1 class="titulo">CADASTRO</h1>
+    <h1 class="tituloCad">YDUTS</h1>
+    <h1 class="tituloCad2">CADASTRO</h1>
     <div class="centralizar">
     <form method="POST">
         <p class="textodif">Nome</p>
