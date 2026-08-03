@@ -20,6 +20,8 @@
         <p class="textodif">Senha</p>
         <input type="password" name="senhaUsuario">
         <br><br>
+    </div>
+    <div class="faltapouco">
         <p class="textodif">Falta pouco para você começar sua aventura!</p>
         <br><br>
         <button type="submit">Prosseguir</button>
