@@ -130,43 +130,46 @@ button:hover{
     cursor: pointer;
 }
 
-.barra-personagem {
-    display: flex;
-    align-items: center;
-    width: 400px;
-    height: 70px;
+.hud{
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+    height:85px;
+
+    background:#8169A3;
+
+    display:flex;
+    align-items:center;
+
+    padding-left:140px;
+    padding-right:40px;
 }
 
-/* A bolinha do personagem */
-.avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid white;
-    z-index: 2;
-    background-color: #775f99;
+.avatar{
+
+    position:absolute;
+
+    left:25px;
+    bottom:0;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    background:#7a639e;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
 }
 
-.avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.avatar img{
 
-/* A parte reta da barra */
-.barra {
-    height: 35px;
-    flex: 1;
-    background-color: #775f99;
-    border-radius: 0 20px 20px 0;
-    margin-left: -15px; /* faz a barra entrar atrás da bola */
-    overflow: hidden;
-}
-
-/* Quanto da barra está preenchida */
-.progresso {
-    height: 100%;
-    width: 70%;
-    background-color: #4caf50;
+    width:100%;
 }

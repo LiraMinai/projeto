@@ -16,13 +16,16 @@
     <button onclick="window.location.href='matematica.php'">Matemática</button>
     <button onclick="window.location.href='portugues.php'">Português</button>
     <button onclick="window.location.href='ingles.php'">Inglês</button>
-    <div class="barra-personagem">
+    <div class="hud">
         <div class="avatar">
-            🧙
+            <img src="imagens/personagem.png">
         </div>
-
-        <div class="barra">
-            <div class="progresso"></div>
+        <div class="info">
+            <span class="nome">Nome do Personagem</span>
+            <div class="status">
+                <span>❤️ 5</span>
+                <span>🔥 0</span>
+            </div>
         </div>
     </div>
 </body>
