@@ -180,3 +180,10 @@ button:hover{
     align-items: center;    
     min-height: 70px;
 }
+
+.faltapouco{
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 70px;
+}
