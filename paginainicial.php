@@ -1,3 +1,36 @@
+<?php
+session_start();
+include("conexao.php");
+
+$id = $_SESSION['idUsuario'];
+
+$sql = "
+        SELECT
+            u.sequenciaCheckinUsuario,
+            p.nomePersonagem,
+            p.vidaAtualPersonagem,
+            p.nivelPersonagem,
+            p.xpPersonagem,
+            p.avatarPersonagem
+        FROM usuario u
+        INNER JOIN personagem p
+        ON u.idUsuario = p.idUsuario
+        WHERE u.idUsuario = ?
+        ";
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$dados = $stmt->get_result()->fetch_assoc();
+
+$nomePersonagem = $dados["nomePersonagem"];
+$vida            = $dados["vidaAtualPersonagem"];
+$sequencia       = $dados["sequenciaCheckinUsuario"];
+$nivel           = $dados["nivelPersonagem"];
+$xp              = $dados["xpPersonagem"];
+$avatar          = $dados["avatarPersonagem"];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,18 +46,17 @@
         </div>
         <h1 class="titulo">MATÉRIAS</h1>
     </header>
-    <button onclick="window.location.href='matematica.php'">Matemática</button>
-    <button onclick="window.location.href='portugues.php'">Português</button>
-    <button onclick="window.location.href='ingles.php'">Inglês</button>
+    <button onclick="window.location.href='materias/portugues.php'">Português</button>
+    <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
     <div class="hud">
         <div class="avatar">
             <img src="imagens/personagem.png">
         </div>
         <div class="info">
-            <span class="nome">Nome do Personagem</span>
+            <span class="nome"><?= $nomePersonagem ?></span>
             <div class="status">
-                <span>❤️ 5</span>
-                <span>🔥 0</span>
+                <span>❤️ <?= $vida ?></span>
+                <span>🔥 <?= $sequencia ?></span>
             </div>
         </div>
     </div>
