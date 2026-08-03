@@ -6,7 +6,6 @@
     <title>Cadastro</title>
 </head>
 <body>
-
 <header class="cabecalho">
     <div class="logo">
         <img src="imagens/logo.png" alt="Logo">
@@ -14,7 +13,6 @@
     </div>
         <h1 class="tituloCad2">CADASTRO</h1>
 </header>
-
     <div class="centralizar">
     <form method="POST">
         <p class="textodif">Nome</p>
@@ -26,17 +24,14 @@
         <p class="textodif">Senha</p>
         <input type="password" name="senhaUsuario">
     </div>
-
     <div class="faltapouco">
         <p class="textodif">Falta pouco para você começar sua aventura!</p>
-    
     </div>
     <br>
     <div class="centralizar">
         <button type="submit">Prosseguir</button>
     </form>
     </div>
-
     <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
