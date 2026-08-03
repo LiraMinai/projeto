@@ -64,15 +64,6 @@ header{
     align-items: center; 
 }
 
-.tituloCad{
-    font-family: 'FonteYTUDS';
-    color: #f5ecd2;
-    font-size: 112.5px;
-    margin-top: 25px;
-    width: 550px;
-    float: left;
-}
-
 .subtitulo{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
@@ -185,6 +176,11 @@ button:hover{
 }
 
 /*Cadastro*/
+
+.tituloCad{
+   font-size: 48px;
+   margin: 0;
+}
 
 .logo{
     display: flex;

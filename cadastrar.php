@@ -10,7 +10,7 @@
 <header class="cabeçalho">
     <div class="logo">
         <img src="imagens/logo.png" alt="Logo">
-        <h1>YDUTS</h1>
+        <h1 class="tituloCad">YDUTS</h1>
     </div>
         <h1 class="tituloCad">CADASTRO</h1>
 </header>
