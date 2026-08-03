@@ -186,6 +186,8 @@ button:hover{
     justify-content: center; 
     align-items: center;    
     min-height: 70px;
+    width: 100px;     
+    height: 20px;  
 }
 
 input{
