@@ -9,10 +9,11 @@
     <header>
         <div class= "logo">
             <img class='img-logo' src="imagens/logo.png">
-            <h1 class="titulo">YDUTS</h1>
+            <h1 class="tituloCad2">YDUTS</h1>
         </div>
-        <h1 class="titulo">ENTRAR</h1>
+        <h1 class="tituloCad2">ENTRAR</h1>
     </header>
+    <div class="centralizar">
     <form method="POST">
         <p class="textodif">E-mail</p>
         <input class="questionario" type="text" name="emailUsuario">
@@ -21,6 +22,7 @@
         <br><br>
         <button type="submit">Entrar</button>
     </form>
+    </div>
 </body>
 </html>
 <?php
