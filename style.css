@@ -60,7 +60,6 @@ header{
     margin-top: 25px;
     width: 550px;
     float: left;
-    
 }
 
 .subtitulo{
@@ -185,9 +184,7 @@ button:hover{
     display: flex;
     justify-content: center; 
     align-items: center;    
-    min-height: 70px;
-    width: 100px;     
-    height: 20px;  
+    min-height: 70px; 
 }
 
 input{
