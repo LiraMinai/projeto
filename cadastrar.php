@@ -25,7 +25,7 @@
         <input type="text" name="emailUsuario">
         <p class="textodif">Senha</p>
         <input type="password" name="senhaUsuario">
-        <br>
+  
     </div>
 
     <div class="faltapouco">
