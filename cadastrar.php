@@ -6,9 +6,15 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <img class="dadoCad" src="imagens/logo.png">
-    <h1 class="tituloCad">YDUTS</h1>
-    <h1 class="tituloCad2">CADASTRO</h1>
+
+<header class="cabeçalho">
+    <div class="logo">
+        <img src="imagens/logo.png" alt="Logo">
+        <h1>YDUTS</h1>
+    </div>
+        <h1 class="tituloCad">CADASTRO</h1>
+</header>
+
     <div class="centralizar">
     <form method="POST">
         <p class="textodif">Nome</p>
@@ -21,14 +27,17 @@
         <input type="password" name="senhaUsuario">
         <br><br>
     </div>
+
     <div class="faltapouco">
         <p class="textodif">Falta pouco para você começar sua aventura!</p>
     </div>
+
     <br><br>
     <div class="centralizar">
         <button type="submit">Prosseguir</button>
     </form>
     </div>
+
     <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

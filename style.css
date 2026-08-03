@@ -73,15 +73,6 @@ header{
     float: left;
 }
 
-.tituloCad2{
-    font-family: 'FonteYTUDS';
-    color: #f5ecd2;
-    font-size: 100.5px;
-    margin-top: 25px;
-    width: 550px;
-    float: right;
-}
-
 .subtitulo{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
@@ -193,6 +184,24 @@ button:hover{
     width:100%;
 }
 
+/*Cadastro*/
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img{
+    width: 55px;
+}
+
+.logo h1{
+    color: #FFF6DD;
+    font-size: 42px;
+    margin: 0;
+}
+
 .centralizar{
     display: flex;
     justify-content: center; 
@@ -214,8 +223,4 @@ input{
     padding: 10px;
     border-radius: 10px;
     border: none;
-}
-
-.dadoCad{
-    position: left;
 }
