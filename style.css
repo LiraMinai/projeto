@@ -59,8 +59,9 @@ header{
     font-size: 112.5px;
     margin-top: 25px;
     width: 550px;
-    float: left;
-    
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
 }
 
 .subtitulo{
@@ -121,7 +122,6 @@ button:hover{
 .questionario{
    width: 387.5px;
     height: 75px; 
-    background: #6d5492;
     color: #2b124c;
     border: none;
     border-radius: 18.75px;
@@ -172,4 +172,78 @@ button:hover{
 .avatar img{
 
     width:100%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* distância entre os elementos */
+}
+
+/*Cadastro*/
+
+.tituloCad{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 150px;
+    margin-top: 25px;
+    width: 550px;
+    float: left;
+}
+
+.tituloCad2{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 67px;
+    margin-top: 25px;
+    width: 550px;
+    float: center;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 20px;
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img{
+    width: 55px;
+}
+
+.logo h1{
+    color: #FFF6DD;
+    font-size: 67px;
+    margin: 0;
+}
+
+.centralizar{
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 70px;
+}
+
+.faltapouco{
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 70px; 
+}
+
+input{
+    width: 500px;     
+    height: 55px;      
+    font-size: 22px;   
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
 }
