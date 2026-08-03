@@ -76,10 +76,10 @@ header{
 .tituloCad2{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
-    font-size: 112.5px;
+    font-size: 100.5px;
     margin-top: 25px;
     width: 550px;
-    float: left;
+    float: right;
 }
 
 .subtitulo{
@@ -214,4 +214,8 @@ input{
     padding: 10px;
     border-radius: 10px;
     border: none;
+}
+
+.dadoCad{
+    position: left;
 }

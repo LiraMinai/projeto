@@ -6,7 +6,7 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <img src="imagens/logo.png">
+    <img class="dadoCad" src="imagens/logo.png">
     <h1 class="tituloCad">YDUTS</h1>
     <h1 class="tituloCad2">CADASTRO</h1>
     <div class="centralizar">
