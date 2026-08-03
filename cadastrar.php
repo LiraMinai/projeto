@@ -12,7 +12,7 @@
         <img src="imagens/logo.png" alt="Logo">
         <h1 class="tituloCad">YDUTS</h1>
     </div>
-        <h1 class="tituloCad">CADASTRO</h1>
+        <h1 class="tituloCad2">CADASTRO</h1>
 </header>
 
     <div class="centralizar">
