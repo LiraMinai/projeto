@@ -43,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="tituloPersonagem">Crie seu personagem</h1>
         <div class="criacaoPersonagem">
         <form method="POST">
-            <label>Nome do personagem:</label>
+            <label class="textodif">Nome do personagem:</label>
             <input type="text" name="nomePersonagem" required>
             <br>
-            <label>Escolha seu avatar:</label>
+            <label class="textodif">Escolha seu avatar:</label>
             <input type="text" name="avatarPersonagem" value="img/avatar1.png">
             <br>
             <button type="submit">Criar personagem</button>
