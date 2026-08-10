@@ -41,13 +41,15 @@ $avatar          = $dados["avatarPersonagem"];
 <body>
     <header>
         <div class= "logo">
-            <img class='img-logo' src="imagens/logo.png">
-            <h1 class="titulo">YDUTS</h1>
+            <img src="imagens/logo.png" alt="Logo">
+            <h1 class="tituloCad">YDUTS</h1>
         </div>
-        <h1 class="titulo">MATÉRIAS</h1>
+        <h1 class="tituloCad2">MATÉRIAS</h1>
     </header>
+<div class="materias">
     <button onclick="window.location.href='materias/portugues.php'">Português</button>
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
+</div>
     <div class="hud">
         <div class="avatar">
             <img src="imagens/personagem.png">
