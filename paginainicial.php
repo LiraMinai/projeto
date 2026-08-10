@@ -46,7 +46,7 @@ $avatar          = $dados["avatarPersonagem"];
         </div>
         <h1 class="tituloCad2">MATÉRIAS</h1>
     </header>
-<div class="centralizar">
+<div class="Cmaterias">
     <button onclick="window.location.href='materias/portugues.php'">Português</button>
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
 </div>
