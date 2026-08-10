@@ -266,4 +266,5 @@ input{
     margin-top: 25px;
     width: 550px;
     float: left;
+    white-space: nowrap;
 }
