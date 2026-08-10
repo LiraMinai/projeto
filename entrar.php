@@ -44,12 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($senha, $usuario["senhaUsuario"])) {
 
             $_SESSION["idUsuario"] = $usuario["idUsuario"];
-            echo "<pre>";
-            var_dump($_SESSION);
-            echo "</pre>";
-
-            exit;
-
             header("Location: paginainicial.php");
             exit;
 
