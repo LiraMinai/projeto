@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1 class="tituloCad">Crie seu personagem</h1>
+        <h1 class="titulo">Crie seu personagem</h1>
         <form method="POST">
             <label>Nome do personagem:</label>
             <input type="text" name="nomePersonagem" required>
