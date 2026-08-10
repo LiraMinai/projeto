@@ -268,3 +268,10 @@ input{
     float: left;
     white-space: nowrap;
 }
+
+.criacaoPersonagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
