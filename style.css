@@ -264,7 +264,7 @@ input{
     color: #f5ecd2;
     font-size: 50px;
     margin-top: 25px;
-    width: 550px;
+    width: 100%;
     display: flex;
     justify-content: center; 
     align-items: center; 
