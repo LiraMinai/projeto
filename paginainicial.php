@@ -41,7 +41,7 @@ $avatar          = $dados["avatarPersonagem"];
 <body>
     <header>
         <div class= "logo">
-            <img class='img-logo' src="imagens/logo.png">
+            <img src="imagens/logo.png" alt="Logo">
             <h1 class="tituloCad">YDUTS</h1>
         </div>
         <h1 class="tituloCad2">MATÉRIAS</h1>
