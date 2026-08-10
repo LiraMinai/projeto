@@ -262,12 +262,8 @@ input{
 .tituloPersonagem{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
-    font-size: 100px;
+    font-size: 150px;
     margin-top: 25px;
-    margin-right: 20px;
     width: 550px;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    white-space: nowrap;
+    float: left;
 }
