@@ -49,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label class="textodif">Escolha seu avatar:</label>
             <input type="text" name="avatarPersonagem" value="img/avatar1.png">
             <br>
+            </div>
             <button type="submit">Criar personagem</button>
-        </div>
         </form>
     </body>
 </html>
