@@ -50,7 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="avatarPersonagem" value="img/avatar1.png">
             <br>
             </div>
+            <div class="centralizar">
             <button type="submit">Criar personagem</button>
         </form>
+    </div>
     </body>
 </html>
