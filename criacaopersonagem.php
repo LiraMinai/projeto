@@ -53,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <style>
             canvas {
                 image-rendering: pixelated;
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
             .editorPixelArt {
                 display: flex;
@@ -79,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <canvas id="game" width="320" height="320"></canvas>
 
                 <div id="menu">
-                    <label for="eyeColor">Cor do olho esquerdo</label>
+                    <label for="eyeColor" class=textoPersonagem>Cor do olho esquerdo</label>
                     <input type="color" id="eyeColor" value="#3B82F6">
 
                     <label>
@@ -88,11 +91,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <div id="menuHeterocromia" style="display: none;">
-                        <label for="eyeColorRight">Cor do olho direito</label>
+                        <label for="eyeColorRight" class=textoPersonagem>Cor do olho direito</label>
                         <input type="color" id="eyeColorRight" value="#10B981">
                     </div>
 
-                    <label for="skinColor">Cor da pele</label>
+                    <label for="skinColor" class=textoPersonagem>Cor da pele</label>
                     <select id="skinColor">
                         <option value="#F8DCC8">Pele 1</option>
                         <option value="#EFC4A4">Pele 2</option>
@@ -108,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Vitiligo
                     </label>
 
-                    <label for="cabelos">Cabelo</label>
+                    <label for="cabelos" class=textoPersonagem>Cabelo</label>
                     <select id="cabelos">
                         <option value="nenhum">Nenhum</option>
                         <optgroup label="Cabelos">
@@ -121,10 +124,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </optgroup>
                     </select>
 
-                    <label for="hairColor">Cor do cabelo</label>
+                    <label for="hairColor" class=textoPersonagem>Cor do cabelo</label>
                     <input type="color" id="hairColor" value="#3B2A1A">
 
-                    <label for="roupaSuperior">Roupa Superior</label>
+                    <label for="roupaSuperior" class=textoPersonagem>Roupa Superior</label>
                     <select id="roupaSuperior">
                         <option value="nenhuma">Nenhuma</option>
                         <optgroup label="Camisas manga longa">
@@ -147,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </optgroup>
                     </select>
 
-                    <label for="roupaInferior">Roupa inferior</label>
+                    <label for="roupaInferior" class=textoPersonagem>Roupa inferior</label>
                     <select id="roupaInferior">
                         <option value="nenhuma">Nenhuma</option>
                         <optgroup label="Bermudas">
@@ -156,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="bermudaMarrom">Bermuda Marrom</option>
                             <option value="bermudaPreta">Bermuda Preta</option>
                         </optgroup>
-                        <optgroup label="Calças">
+                        <optgroup label="Calças" class=textoPersonagem> 
                             <option value="calcaAzul">Calça Azul</option>
                             <option value="calcaBranca">Calça Branca</option>
                             <option value="calcaMarrom">Calça Marrom</option>
@@ -164,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </optgroup>
                     </select>
 
-                    <label for="sapatos">Sapatos</label>
+                    <label for="sapatos" class=textoPersonagem>Sapatos</label>
                     <select id="sapatos">
                         <option value="nenhum">Nenhum</option>
                         <optgroup label="Sapatos">
@@ -188,6 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="hidden" name="roupaSuperior" id="campoRoupaSuperior">
             <input type="hidden" name="roupaInferior" id="campoRoupaInferior">
             <input type="hidden" name="sapato" id="campoSapato">
+
 
             <div class="centralizar">
                 <button type="submit">Criar personagem</button>
