@@ -213,6 +213,14 @@ form{
     width: 550px;
     float: center;
 }
+.tituloCad3{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 67px;
+    margin-top: 25px;
+    width: 950px;
+    float: center;
+}
 
 .cabecalho{
     display: flex;
@@ -276,13 +284,11 @@ input{
 .tituloPersonagem{
     font-family: 'FonteYTUDS';
     color: #f5ecd2;
-    font-size: 70px;
+    font-size: 90px;
     margin-top: 25px;
-    margin-right: 10%;
-    width: auto;
-    float: right;
+    width: 550px;
+    float: left;
     white-space: nowrap;
-    text-align: right;
 }
 
 .criacaoPersonagem{
