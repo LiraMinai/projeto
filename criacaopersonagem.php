@@ -53,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <style>
             canvas {
                 image-rendering: pixelated;
+                display: flex;
+                align-items: center;
+                gap: 15px;
             }
             .editorPixelArt {
                 display: flex;
