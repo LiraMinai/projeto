@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </optgroup>
                     </select>
 
-                    <label for="hairColor">Cor do cabelo</label>
+                    <label for="hairColor" class=textoPersonagem>Cor do cabelo</label>
                     <input type="color" id="hairColor" value="#3B2A1A">
 
                     <label for="roupaSuperior" class=textoPersonagem>Roupa Superior</label>
