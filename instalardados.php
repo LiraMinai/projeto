@@ -4,6 +4,13 @@ include("conexao.php");
 
 echo "<h1>Instalação do Projeto</h1>";
 
+$sql = "ALTER TABLE personagem MODIFY COLUMN avatarPersonagem TEXT";
+
+if ($conexao->query($sql) === TRUE) {
+    echo "ALTER TABLE FUNCIONOU!";
+} else {
+    echo "ERRO NO ALTER TABLE: " . $conexao->error;
+}
 
 // ======================================================
 // ANOS ESCOLARES

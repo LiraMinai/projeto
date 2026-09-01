@@ -28,7 +28,7 @@ $vida            = $dados["vidaAtualPersonagem"];
 $sequencia       = $dados["sequenciaCheckinUsuario"];
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
-$avatar          = $dados["avatarPersonagem"];
+$avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +51,7 @@ $avatar          = $dados["avatarPersonagem"];
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
 </div>
     <div class="hud">
-        <div class="avatar">
-            <img src="imagens/personagem.png">
-        </div>
+        <?php include __DIR__ "/avatar.php"; ?>
         <div class="info">
             <span class="nome"><?= $nomePersonagem ?></span>
             <div class="status">
