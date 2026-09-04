@@ -185,6 +185,15 @@ form{
     gap: 15px; /* distância entre os elementos */
 }
 
+.formCriacaoPersonagem{
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* distância entre os elementos */
+    width: 100%;
+}
+
+
+
 /*Cadastro*/
 
 .tituloCad{
@@ -202,6 +211,14 @@ form{
     font-size: 67px;
     margin-top: 25px;
     width: 550px;
+    float: center;
+}
+.tituloCad3{
+    font-family: 'FonteYTUDS';
+    color: #f5ecd2;
+    font-size: 67px;
+    margin-top: 25px;
+    width: 950px;
     float: center;
 }
 
@@ -283,4 +300,13 @@ input{
     justify-content: center; 
     align-items: center;    
     min-height: 70px; 
+}
+
+.boxpixelart{
+    margin-top: 100px;
+    width: 1000px;
+    height: 900px;
+    border: 1px solid red;
+    margin-left: auto;
+    margin-right: auto;
 }

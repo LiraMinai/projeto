@@ -53,9 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <style>
             canvas {
                 image-rendering: pixelated;
-                display: flex;
-                align-items: center;
-                gap: 15px;
             }
             .editorPixelArt {
                 display: flex;
@@ -70,23 +67,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </style>
     </head>
     <body>
-        <h1 class="tituloPersonagem">Crie seu personagem</h1>
+        <header>
+        <div class= "logo">
+            <img src="imagens/logo.png" alt="Logo">
+            <h1 class="tituloCad">YDUTS</h1>
+        </div>
+        <h1 class="tituloCad3">CRIE SEU PERSONAGEM</h1>
+    </header>
+       
 
+        <div class="boxpixelart">
         <form method="POST">
             <div class="criacaoPersonagem">
-                <label class="textodif">Nome do personagem:</label>
+                <label class="textodif">Nome do personagem:</label><br>
                 <input type="text" name="nomePersonagem" required>
             </div>
 
             <div class="editorPixelArt">
-                <canvas id="game" width="320" height="320"></canvas>
+                <canvas id="game" width="500" height="500"></canvas>
 
                 <div id="menu">
                     <label for="eyeColor" class=textoPersonagem>Cor do olho esquerdo</label>
                     <input type="color" id="eyeColor" value="#3B82F6">
 
                     <label>
-                        <input type="checkbox" id="heterocromia">
+                        <input type="checkbox" id="heterocromia" class=textoPersonagem>
                         Heterocromia
                     </label>
 
@@ -107,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
 
                     <label>
-                        <input type="checkbox" id="vitiligo">
+                        <input type="checkbox" id="vitiligo" class=textoPersonagem>
                         Vitiligo
                     </label>
 
@@ -159,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="bermudaMarrom">Bermuda Marrom</option>
                             <option value="bermudaPreta">Bermuda Preta</option>
                         </optgroup>
-                        <optgroup label="Calças" class=textoPersonagem> 
+                        <optgroup label="Calças"> 
                             <option value="calcaAzul">Calça Azul</option>
                             <option value="calcaBranca">Calça Branca</option>
                             <option value="calcaMarrom">Calça Marrom</option>
@@ -197,5 +202,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">Criar personagem</button>
             </div>
         </form>
+        </div>
     </body>
 </html>
