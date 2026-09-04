@@ -9,8 +9,28 @@ if (!isset($_SESSION["idUsuario"])) {
 
 $idUsuario = $_SESSION["idUsuario"];
 
-// idConteudo vem da URL (materias/portugues.php manda) ou do POST (ao responder)
-$idConteudo = isset($_GET['conteudo']) ? (int) $_GET['conteudo'] : (int) ($_POST['idConteudo'] ?? 0);
+// Busca os dados do personagem
+$stmt = $conexao->prepare("
+    SELECT 
+        idPersonagem,
+        vidaAtualPersonagem,
+        xpPersonagem,
+        avatarPersonagem
+    FROM personagem
+    WHERE idUsuario = ?
+");
+
+$stmt->bind_param("i", $idUsuario);
+$stmt->execute();
+
+$personagem = $stmt->get_result()->fetch_assoc();
+
+$avatar = json_decode($personagem["avatarPersonagem"], true) ?? [];
+
+// idConteudo vem da URL ou POST
+$idConteudo = isset($_GET['conteudo'])
+    ? (int) $_GET['conteudo']
+    : (int) ($_POST['idConteudo'] ?? 0);
 
 if (!$idConteudo) {
     header("Location: ../paginainicial.php");
@@ -42,18 +62,6 @@ if (!isset($_SESSION['quiz']) || ($_SESSION['quiz']['idConteudo'] ?? null) !== $
     ];
 }
 $quiz = &$_SESSION['quiz'];
-
-// Dados do conteúdo (nome + explicação)
-$stmt = $conexao->prepare("SELECT nomeConteudo, explicacaoConteudo FROM conteudo WHERE idConteudo = ?");
-$stmt->bind_param("i", $idConteudo);
-$stmt->execute();
-$conteudo = $stmt->get_result()->fetch_assoc();
-
-// Vida e XP atuais do personagem
-$stmt = $conexao->prepare("SELECT idPersonagem, vidaAtualPersonagem, xpPersonagem FROM personagem WHERE idUsuario = ?");
-$stmt->bind_param("i", $idUsuario);
-$stmt->execute();
-$personagem = $stmt->get_result()->fetch_assoc();
 
 $feedback = null; // 'correto' | 'errado'
 
@@ -178,7 +186,10 @@ $fimDoConteudo = !$semVida && !$pergunta && !$feedback;
 
     <?php else: ?>
         <div class="quiz-pergunta-area">
-            <img class="quiz-personagem" src="../pixelArt/corpoCompleto.png" alt="Personagem">
+            <?php
+            $caminhoAvatar = "../";
+            include "../avatar.php";
+            ?>
             <div class="quiz-balao">
                 <?= htmlspecialchars($pergunta['enunciadoQuestao']) ?>
             </div>
