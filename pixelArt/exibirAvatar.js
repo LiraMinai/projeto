@@ -9,7 +9,8 @@
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
 
-    const CAMINHO_IMAGENS = "pixelArt/";
+    const CAMINHO_IMAGENS =
+    (window.caminhoAvatar || "") + "pixelArt/";
 
     const cabelosPermitidos = [
         "cabeloCrespo",
@@ -57,7 +58,6 @@
     ];
 
     const arquivos = {
-        fundo: "Fundo.png",
         corpo: "corpo.png",
         corpoContorno: "corpoContorno.png",
         olhos: "olhos.png",
