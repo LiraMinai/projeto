@@ -5,7 +5,6 @@ const ctx = canvas.getContext("2d");
  
 ctx.imageSmoothingEnabled = false;
  
-const fundo = new Image();
 const corpo = new Image();
 const corpoContorno = new Image();
 const vitiligo = new Image();
@@ -13,7 +12,6 @@ const olhos = new Image();
 const pupila = new Image();
 const pupilaDireita = new Image();
  
-fundo.src = CAMINHO_IMAGENS + "Fundo.png";
 corpo.src = CAMINHO_IMAGENS + "corpo.png";
 corpoContorno.src = CAMINHO_IMAGENS + "corpoContorno.png";
 vitiligo.src = CAMINHO_IMAGENS + "vitiligo.png";
@@ -212,7 +210,7 @@ checkboxHeterocromia.addEventListener("change", () => {
 });
  
 let imagensParaCarregar = [
-    fundo, corpo, corpoContorno, vitiligo, olhos, pupila, pupilaDireita,
+    corpo, corpoContorno, vitiligo, olhos, pupila, pupilaDireita,
     cabelos.cabeloCrespo, cabelos.cabeloCurto, cabelos.cabeloMedio, cabelos.cabeloLongo, cabelos.cabeloRaspado, cabelos.cabeloRaspadoLateral,
     cabelosContorno.cabeloCrespo, cabelosContorno.cabeloCurto, cabelosContorno.cabeloMedio, cabelosContorno.cabeloLongo, cabelosContorno.cabeloRaspado, cabelosContorno.cabeloRaspadoLateral,
     roupasSuperiores.camisaAmarela, roupasSuperiores.camisaAzul, roupasSuperiores.camisaBranca, roupasSuperiores.camisaPreta, roupasSuperiores.camisaRoxa,
@@ -280,9 +278,7 @@ function desenhar() {
     const tamanho = 56 * escala;
     const x = (canvas.width - tamanho) / 2;
     const y = (canvas.height - tamanho) / 2;
- 
-    if (fundo.complete && fundo.naturalWidth > 0) ctx.drawImage(fundo, 0, 0);
- 
+  
     const corpoColorido = pintarImagem(corpo, corCorpo);
     ctx.drawImage(corpoColorido, x, y, tamanho, tamanho);
  

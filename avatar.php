@@ -1,5 +1,5 @@
 <div class="avatar">
-    <canvas id="avatarHud" width="320" height="320"></canvas> 
+    <canvas id="avatarHud" width="300" height="300"></canvas> 
 </div> 
 
 <script> window.dadosAvatar = 
