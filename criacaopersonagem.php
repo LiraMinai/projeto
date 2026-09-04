@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="color" id="eyeColor" value="#3B82F6">
 
                     <label>
-                        <input type="checkbox" id="heterocromia">
+                        <input type="checkbox" id="heterocromia" class=textoPersonagem>
                         Heterocromia
                     </label>
 
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
 
                     <label>
-                        <input type="checkbox" id="vitiligo">
+                        <input type="checkbox" id="vitiligo" class=textoPersonagem>
                         Vitiligo
                     </label>
 
