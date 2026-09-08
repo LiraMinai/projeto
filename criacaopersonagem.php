@@ -91,13 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="color" id="eyeColor" value="#3B82F6">
 
                     <label class=textoPersonagem>
-                        <label>Heterocromia</label>
+                        <label class='lblcheck'>Heterocromia</label>
                         <input type="checkbox" id="heterocromia">
                         
                     </label>
 
                     <div id="menuHeterocromia" style="display: none;">
-                        <label for="eyeColorRight" class=textoPersonagem>Cor do olho direito</label>
+                        <labelfor="eyeColorRight" class=textoPersonagem>Cor do olho direito</label><br>
                         <input type="color" id="eyeColorRight" value="#10B981">
                     </div>
 
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
 
                     <label class=textoPersonagem>
-                        <label>Vitiligo</label>
+                        <label class='lblcheck'>Vitiligo</label>
                         <input type="checkbox" id="vitiligo">
                          
                     </label>

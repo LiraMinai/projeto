@@ -275,7 +275,13 @@ input[type=color]{
 }
 
 input[type=checkbox]{
-    width: 60px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+select{
+    width: 100px;
 }
 
 /*Página Inicial*/
@@ -430,4 +436,17 @@ input[type=checkbox]{
     transform: scale(1) translateY(15%);
     transform-origin: center top;
     image-rendering: pixelated;
+}
+.lblcheck{
+    width: 150px;
+    display: inline-block;
+}
+
+/*Matéria*/
+.status{
+    
+}
+
+.info{
+    margin-left: 40px;
 }
