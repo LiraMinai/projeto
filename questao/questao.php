@@ -59,11 +59,20 @@ if (!isset($_SESSION['quiz']) || ($_SESSION['quiz']['idConteudo'] ?? null) !== $
         'acertos'     => 0,
         'ordemAtual'  => null,
         'perguntaId'  => null,
+        'explicacaoVista' => false,
     ];
 }
 $quiz = &$_SESSION['quiz'];
+// Garante que explicacaoVista exista mesmo em sessões antigas
+if (!isset($quiz['explicacaoVista'])) {
+    $quiz['explicacaoVista'] = false;
+}
 
 $feedback = null; // 'correto' | 'errado'
+// Usuário clicou para começar as questões
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comecarQuiz'])) {
+    $quiz['explicacaoVista'] = true;
+}
 
 // ---- Usuário acabou de responder uma pergunta ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
@@ -98,6 +107,84 @@ $semVida = $personagem['vidaAtualPersonagem'] <= 0;
 // ---- Escolhe a pergunta a ser exibida ----
 $pergunta = null;
 $opcoes = [];
+
+// Só busca perguntas depois que o usuário viu a explicação
+if ($quiz['explicacaoVista']) {
+
+    if ($semVida) {
+        // acabou a vida, não busca pergunta nova
+
+    } elseif ($feedback) {
+
+        // acabou de responder: recarrega a MESMA pergunta
+        $stmt = $conexao->prepare("
+            SELECT * 
+            FROM questao 
+            WHERE idQuestao = ?
+        ");
+
+        $stmt->bind_param("i", $idQuestaoRespondida);
+        $stmt->execute();
+
+        $pergunta = $stmt->get_result()->fetch_assoc();
+
+        $opcoes = $quiz['ordemAtual'];
+
+    } else {
+
+        // busca perguntas do conteúdo
+        $stmt = $conexao->prepare("
+            SELECT * 
+            FROM questao 
+            WHERE idConteudo = ?
+            AND statusQuestao = 'ativa'
+        ");
+
+        $stmt->bind_param("i", $idConteudo);
+        $stmt->execute();
+
+        $todasQuestoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $disponiveis = array_values(
+            array_filter(
+                $todasQuestoes,
+                function ($q) use ($quiz) {
+                    return !in_array(
+                        $q['idQuestao'],
+                        $quiz['respondidas']
+                    );
+                }
+            )
+        );
+
+        if (!empty($disponiveis)) {
+
+            $pergunta = $disponiveis[array_rand($disponiveis)];
+
+            $opcoes = [
+                1 => $pergunta['opcao1Questao'],
+                2 => $pergunta['opcao2Questao'],
+                3 => $pergunta['opcao3Questao'],
+                4 => $pergunta['opcao4Questao'],
+            ];
+
+            $chaves = array_keys($opcoes);
+
+            shuffle($chaves);
+
+            $embaralhadas = [];
+
+            foreach ($chaves as $k) {
+                $embaralhadas[$k] = $opcoes[$k];
+            }
+
+            $opcoes = $embaralhadas;
+
+            $quiz['ordemAtual'] = $opcoes;
+            $quiz['perguntaId'] = $pergunta['idQuestao'];
+        }
+    }
+}
 
 if ($semVida) {
     // acabou a vida, não busca pergunta nova
@@ -142,7 +229,11 @@ if ($semVida) {
     }
 }
 
-$fimDoConteudo = !$semVida && !$pergunta && !$feedback;
+$fimDoConteudo = 
+    $quiz['explicacaoVista'] &&
+    !$semVida &&
+    !$pergunta &&
+    !$feedback;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -152,77 +243,107 @@ $fimDoConteudo = !$semVida && !$pergunta && !$feedback;
     <title><?= htmlspecialchars($conteudo['nomeConteudo'] ?? 'Questão') ?></title>
 </head>
 <body>
-
-<div class="quiz-box">
-
-    <div class="quiz-topo">
-        <h2 class="tituloCad2">Responda:</h2>
-        <div class="quiz-vidas">❤️ <?= $personagem['vidaAtualPersonagem'] ?></div>
-    </div>
-
-    <?php if ($semVida): ?>
-        <div class="quiz-fim">
-            <h1 class="tituloCad2">Você ficou sem vidas!</h1>
-            <p class="texto">Espere sua vida recarregar ou volte mais tarde.</p>
-            <button onclick="window.location.href='../paginainicial.php'">Voltar</button>
+    <header>
+        <div class= "logo">
+            <img src="../imagens/logo.png" alt="Logo">
+            <h1 class="tituloCad">YDUTS</h1>
         </div>
+        <h1 class="tituloCad2">QUESTÕES</h1>
+    </header>
 
-    <?php elseif ($fimDoConteudo): ?>
-        <?php if ($idMateria == 1): ?>
-            <div class="quiz-fim">
-            <h1 class="tituloCad2">Conteúdo concluído!</h1>
-            <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
-            <button onclick="window.location.href='../materias/portugues.php'">Voltar para Português</button>
-        </div>
+    <div class="quiz-box">
+        <?php if (!$quiz['explicacaoVista']): ?>
+        <div class="quiz-explicacao-inicial">
 
-        <?php elseif ($idMateria == 2): ?>
-            <div class="quiz-fim">
-            <h1 class="tituloCad2">Conteúdo concluído!</h1>
-            <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
-            <button onclick="window.location.href='../materias/ingles.php'">Voltar para Inglês</button>
-        </div>
+            <h1 class="tituloCad2">
+                <?= htmlspecialchars($conteudo['nomeConteudo']) ?>
+            </h1>
 
-    <?php endif; ?>
+            <p class="texto">
+                <?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?>
+            </p>
 
-    <?php else: ?>
-        <div class="quiz-pergunta-area">
-            <?php
-            $caminhoAvatar = "../";
-            include "../avatar.php";
-            ?>
-            <div class="quiz-balao">
-                <?= htmlspecialchars($pergunta['enunciadoQuestao']) ?>
-            </div>
-        </div>
-
-        <?php if ($feedback): ?>
-            <div class="quiz-feedback quiz-<?= $feedback ?>">
-                <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
-
-                <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
-                    <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
-                <?php endif; ?>
-            </div>
-
-            <button onclick="window.location.href='questao.php?conteudo=<?= $idConteudo ?>'">Próxima pergunta</button>
-
-        <?php else: ?>
             <form method="POST" action="questao.php">
-                <input type="hidden" name="idConteudo" value="<?= $idConteudo ?>">
-                <input type="hidden" name="idQuestao" value="<?= $pergunta['idQuestao'] ?>">
-
-                <?php foreach ($opcoes as $numeroOriginal => $texto): ?>
-                    <button type="submit" name="resposta" value="<?= $numeroOriginal ?>">
-                        <?= htmlspecialchars($texto) ?>
-                    </button>
-                <?php endforeach; ?>
+                <input 
+                    type="hidden" 
+                    name="idConteudo" 
+                    value="<?= $idConteudo ?>"
+                >
+                <br><br>
+                <button type="submit" name="comecarQuiz">
+                    Começar questões
+                </button>
             </form>
+        </div>
+        <?php elseif ($semVida): ?>
+            <div class="quiz-fim">
+                <h1 class="tituloCad2">Você ficou sem vidas!</h1>
+                <p class="texto">Espere sua vida recarregar ou volte mais tarde.</p>
+                <button onclick="window.location.href='../paginainicial.php'">Voltar</button>
+            </div>
+
+        <?php elseif ($fimDoConteudo): ?>
+            <?php if ($idMateria == 1): ?>
+                <div class="quiz-fim">
+                <h1 class="tituloCad2">Conteúdo concluído!</h1>
+                <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
+                <button onclick="window.location.href='../materias/portugues.php'">Voltar para Português</button>
+            </div>
+
+            <?php elseif ($idMateria == 2): ?>
+                <div class="quiz-fim">
+                <h1 class="tituloCad2">Conteúdo concluído!</h1>
+                <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
+                <button onclick="window.location.href='../materias/ingles.php'">Voltar para Inglês</button>
+            </div>
 
         <?php endif; ?>
 
-    <?php endif; ?>
+        <?php else: ?>
+            <div class="quiz-topo">
+                <h2 class="tituloCad2">Responda:</h2>
+                <div class="quiz-vidas">❤️ <?= $personagem['vidaAtualPersonagem'] ?></div>
+            </div>
+            <div class="quiz-pergunta-area">
+                <div class="quiz-avatar">
+                    <?php
+                    $caminhoAvatar = "../";
+                    include "../avatar.php";
+                    ?>
+                </div>
+                <div class="quiz-balao">
+                    <?= htmlspecialchars($pergunta['enunciadoQuestao']) ?>
+                </div>
+            </div>
 
-</div>
+            <?php if ($feedback): ?>
+                <div class="quiz-feedback quiz-<?= $feedback ?>">
+                    <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
+
+                    <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
+                        <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <button onclick="window.location.href='questao.php?conteudo=<?= $idConteudo ?>'">Próxima pergunta</button>
+
+            <?php else: ?>
+                <form method="POST" action="questao.php">
+                    <input type="hidden" name="idConteudo" value="<?= $idConteudo ?>">
+                    <input type="hidden" name="idQuestao" value="<?= $pergunta['idQuestao'] ?>">
+
+                    <?php foreach ($opcoes as $numeroOriginal => $texto): ?>
+                        <button type="submit" name="resposta" value="<?= $numeroOriginal ?>">
+                            <?= htmlspecialchars($texto) ?>
+                        </button>
+                    <?php endforeach; ?>
+                </form>
+
+            <?php endif; ?>
+
+        <?php endif; ?>
+
+    </div>
 
 </body>
 </html>

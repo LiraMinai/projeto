@@ -140,14 +140,6 @@
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(
-            imagens.fundo,
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
         const corpoColorido = pintarImagem(
             imagens.corpo,
             dados.corPele || "#F8DCC8"

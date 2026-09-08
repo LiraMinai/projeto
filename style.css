@@ -423,6 +423,28 @@ select{
     margin-top: 60px;
 }
 
+/* Avatar na tela de questão: corpo inteiro, sem recorte de círculo */
+.quiz-avatar .avatar{
+    position: static;
+    width: 300px;
+    height: 300px;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+.quiz-avatar canvas{
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+/* Avatar do HUD: dá zoom no rosto dentro da bolinha */
+.hud .avatar canvas{
+    transform: scale(1) translateY(15%);
+    transform-origin: center top;
+    image-rendering: pixelated;
+}
 .lblcheck{
     width: 150px;
     display: inline-block;
