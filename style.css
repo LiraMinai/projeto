@@ -247,6 +247,14 @@ form{
     margin: 0;
 }
 
+.centralizarMaterias{
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 70px;
+    font-size: 30px;
+}
+
 .centralizar{
     display: flex;
     justify-content: center; 

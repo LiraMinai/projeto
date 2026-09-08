@@ -30,7 +30,7 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     </header>
     <div class="materias">
         <?php foreach ($conteudos as $c): ?>
-            <button onclick="window.location.href='../questao/questao.php?conteudo=<?= $c['idConteudo'] ?>'">
+            <button class="centralizarMaterias" onclick="window.location.href='../questao/questao.php?conteudo=<?= $c['idConteudo'] ?>'">
                 <?= htmlspecialchars($c['nomeConteudo']) ?>
             </button>
         <?php endforeach; ?>
