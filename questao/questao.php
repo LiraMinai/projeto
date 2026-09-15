@@ -334,9 +334,11 @@ $fimDoConteudo =
                     <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
                         <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
                     <?php endif; ?>
-                </div>
+                </div><br>
 
+                <div class="centralizarProximaPergunta">
                 <button onclick="window.location.href='questao.php?conteudo=<?= $idConteudo ?>'">Próxima pergunta</button>
+                </div>
 
             <?php else: ?>
                 <form method="POST" action="questao.php">
