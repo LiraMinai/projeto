@@ -116,7 +116,7 @@ button{
     border: none;
     border-radius: 18.75px;
     font-family: 'FonteYTUDS';
-    font-size: 35px;
+    font-size: 29px;
     cursor: pointer;
 }
 
@@ -245,6 +245,15 @@ form{
     color: #FFF6DD;
     font-size: 67px;
     margin: 0;
+}
+
+.centralizarProximaPergunta{
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 70px;
+    font-size: 30px;
+
 }
 
 .centralizarMaterias{
