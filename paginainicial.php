@@ -39,24 +39,8 @@ $vida = recarregarVida(
 );
 
 $sequencia       = $dados["sequenciaCheckinUsuario"];
-$hoje = new DateTime();
-$ultimoCheckin = $dados['ultimoCheckinUsuario'] ? new DateTime($dados['ultimoCheckinUsuario']) : null;
-
-if ($ultimoCheckin === null || $ultimoCheckin->format('Y-m-d') !== $hoje->format('Y-m-d')) {
-    if ($ultimoCheckin !== null) {
-        $ontem = (clone $hoje)->modify('-1 day');
-        $sequencia = ($ultimoCheckin->format('Y-m-d') === $ontem->format('Y-m-d'))
-            ? $sequencia + 1  // check-in em dias seguidos, mantém a sequência
-            : 1;              // pulou um dia, quebrou a sequência
-    } else {
-        $sequencia = 1; // primeiro check-in de todos
-    }
-
-    $hojeStr = $hoje->format('Y-m-d');
-    $stmt = $conexao->prepare("UPDATE usuario SET sequenciaCheckinUsuario = ?, ultimoCheckinUsuario = ?, melhorSequenciaUsuario = GREATEST(melhorSequenciaUsuario, ?) WHERE idUsuario = ?");
-    $stmt->bind_param("isii", $sequencia, $hojeStr, $sequencia, $id);
-    $stmt->execute();
-}
+include "checkin.php";
+$sequencia = verificarCheckin($conexao, $id, $dados['ultimoCheckinUsuario'], $sequencia);
 
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
@@ -69,6 +53,7 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>YDUTS</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
     <header>

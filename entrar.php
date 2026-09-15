@@ -8,6 +8,7 @@ include("conexao.php");
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Entrar</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
     <header>

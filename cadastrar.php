@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
 <header class="cabecalho">

@@ -42,7 +42,11 @@ $vida = recarregarVida(
     $dados["vidaMaximaPersonagem"],
     $dados["ultimaRecargaVidaPersonagem"]
 );
+
 $sequencia       = $dados["sequenciaCheckinUsuario"];
+include "../checkin.php";
+$sequencia = verificarCheckin($conexao, $id, $dados['ultimoCheckinUsuario'], $sequencia);
+
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
 $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
@@ -60,6 +64,7 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css">
     <title>Inglês</title>
+    <link rel="icon" type="image/png" href="../imagens/logo.png">
 </head>
 <body>
     <header>

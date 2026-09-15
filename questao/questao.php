@@ -17,6 +17,7 @@ $stmt = $conexao->prepare("
         vidaMaximaPersonagem,
         ultimaRecargaVidaPersonagem,
         xpPersonagem,
+        nivelPersonagem,
         avatarPersonagem
     FROM personagem
     WHERE idUsuario = ?
@@ -104,9 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
         $personagem['vidaAtualPersonagem'] = max(0, $personagem['vidaAtualPersonagem'] - 5);
     }
 
-    // Salva vida e xp atualizados no banco
-    $stmt = $conexao->prepare("UPDATE personagem SET vidaAtualPersonagem = ?, xpPersonagem = ? WHERE idPersonagem = ?");
-    $stmt->bind_param("iii", $personagem['vidaAtualPersonagem'], $personagem['xpPersonagem'], $personagem['idPersonagem']);
+    include "../nivel.php";
+    $nivelAnterior = $personagem['nivelPersonagem'];
+    $personagem['nivelPersonagem'] = calcularNivel($personagem['xpPersonagem']);
+    $subiuDeNivel = $personagem['nivelPersonagem'] > $nivelAnterior;
+
+    // Salva vida, xp e nível atualizados no banco
+    $stmt = $conexao->prepare("UPDATE personagem SET vidaAtualPersonagem = ?, xpPersonagem = ?, nivelPersonagem = ? WHERE idPersonagem = ?");
+    $stmt->bind_param("iiii", $personagem['vidaAtualPersonagem'], $personagem['xpPersonagem'], $personagem['nivelPersonagem'], $personagem['idPersonagem']);
     $stmt->execute();
 
     $quiz['respondidas'][] = $idQuestao;
@@ -197,49 +203,6 @@ if ($quiz['explicacaoVista']) {
     }
 }
 
-if ($semVida) {
-    // acabou a vida, não busca pergunta nova
-} elseif ($feedback) {
-    // acabou de responder: recarrega a MESMA pergunta pra mostrar o feedback
-    $stmt = $conexao->prepare("SELECT * FROM questao WHERE idQuestao = ?");
-    $stmt->bind_param("i", $idQuestaoRespondida);
-    $stmt->execute();
-    $pergunta = $stmt->get_result()->fetch_assoc();
-    $opcoes = $quiz['ordemAtual']; // mantém a mesma ordem que o usuário viu
-} else {
-    // busca todas as perguntas ativas do conteúdo e sorteia uma que ainda não foi respondida
-    $stmt = $conexao->prepare("SELECT * FROM questao WHERE idConteudo = ? AND statusQuestao = 'ativa'");
-    $stmt->bind_param("i", $idConteudo);
-    $stmt->execute();
-    $todasQuestoes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-    $disponiveis = array_values(array_filter($todasQuestoes, function ($q) use ($quiz) {
-        return !in_array($q['idQuestao'], $quiz['respondidas']);
-    }));
-
-    if (!empty($disponiveis)) {
-        $pergunta = $disponiveis[array_rand($disponiveis)];
-
-        // embaralha a ordem das 4 opções, mas guarda o número original (1-4) de cada uma
-        $opcoes = [
-            1 => $pergunta['opcao1Questao'],
-            2 => $pergunta['opcao2Questao'],
-            3 => $pergunta['opcao3Questao'],
-            4 => $pergunta['opcao4Questao'],
-        ];
-        $chaves = array_keys($opcoes);
-        shuffle($chaves);
-        $embaralhadas = [];
-        foreach ($chaves as $k) {
-            $embaralhadas[$k] = $opcoes[$k];
-        }
-        $opcoes = $embaralhadas;
-
-        $quiz['ordemAtual'] = $opcoes;
-        $quiz['perguntaId'] = $pergunta['idQuestao'];
-    }
-}
-
 $fimDoConteudo = 
     $quiz['explicacaoVista'] &&
     !$semVida &&
@@ -252,6 +215,7 @@ $fimDoConteudo =
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css">
     <title><?= htmlspecialchars($conteudo['nomeConteudo'] ?? 'Questão') ?></title>
+    <link rel="icon" type="image/png" href="../imagens/logo.png">
 </head>
 <body>
     <header>
@@ -328,17 +292,21 @@ $fimDoConteudo =
             </div>
 
             <?php if ($feedback): ?>
-                <div class="quiz-feedback quiz-<?= $feedback ?>">
-                    <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
+            <div class="quiz-feedback quiz-<?= $feedback ?>">
+                <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
 
-                    <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
-                        <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
-                    <?php endif; ?>
-                </div><br>
+                <?php if (!empty($subiuDeNivel)): ?>
+                    <p class="quiz-explicacao">Você subiu para o nível <?= $personagem['nivelPersonagem'] ?>!</p>
+                <?php endif; ?>
 
-                <div class="centralizarProximaPergunta">
+                <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
+                    <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
+                <?php endif; ?>
+            </div><br>
+
+            <div class="centralizarProximaPergunta">
                 <button onclick="window.location.href='questao.php?conteudo=<?= $idConteudo ?>'">Próxima pergunta</button>
-                </div>
+            </div>
 
             <?php else: ?>
                 <form method="POST" action="questao.php">

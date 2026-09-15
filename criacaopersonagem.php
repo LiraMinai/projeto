@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <head>
         <meta charset="UTF-8">
         <title>Criar Personagem</title>
+        <link rel="icon" type="image/png" href="imagens/logo.png">
         <link rel="stylesheet" href="style.css">
         <script src="pixelArt/script.js" defer></script>
         <style>
