@@ -34,7 +34,7 @@ $dados = $stmt->get_result()->fetch_assoc();
 
 $nomePersonagem = $dados["nomePersonagem"];
 $vida            = $dados["vidaAtualPersonagem"];
-include "vida.php";
+include "../vida.php";
 $vida = recarregarVida(
     $conexao,
     $dados["idPersonagem"],
