@@ -7,8 +7,12 @@ $id = $_SESSION['idUsuario'];
 $sql = "
         SELECT
             u.sequenciaCheckinUsuario,
+            u.ultimoCheckinUsuario,
+            p.idPersonagem,
             p.nomePersonagem,
             p.vidaAtualPersonagem,
+            p.vidaMaximaPersonagem,
+            p.ultimaRecargaVidaPersonagem,
             p.nivelPersonagem,
             p.xpPersonagem,
             p.avatarPersonagem
@@ -25,7 +29,35 @@ $dados = $stmt->get_result()->fetch_assoc();
 
 $nomePersonagem = $dados["nomePersonagem"];
 $vida            = $dados["vidaAtualPersonagem"];
+include "vida.php";
+$vida = recarregarVida(
+    $conexao,
+    $dados["idPersonagem"],
+    $vida,
+    $dados["vidaMaximaPersonagem"],
+    $dados["ultimaRecargaVidaPersonagem"]
+);
+
 $sequencia       = $dados["sequenciaCheckinUsuario"];
+$hoje = new DateTime();
+$ultimoCheckin = $dados['ultimoCheckinUsuario'] ? new DateTime($dados['ultimoCheckinUsuario']) : null;
+
+if ($ultimoCheckin === null || $ultimoCheckin->format('Y-m-d') !== $hoje->format('Y-m-d')) {
+    if ($ultimoCheckin !== null) {
+        $ontem = (clone $hoje)->modify('-1 day');
+        $sequencia = ($ultimoCheckin->format('Y-m-d') === $ontem->format('Y-m-d'))
+            ? $sequencia + 1  // check-in em dias seguidos, mantém a sequência
+            : 1;              // pulou um dia, quebrou a sequência
+    } else {
+        $sequencia = 1; // primeiro check-in de todos
+    }
+
+    $hojeStr = $hoje->format('Y-m-d');
+    $stmt = $conexao->prepare("UPDATE usuario SET sequenciaCheckinUsuario = ?, ultimoCheckinUsuario = ?, melhorSequenciaUsuario = GREATEST(melhorSequenciaUsuario, ?) WHERE idUsuario = ?");
+    $stmt->bind_param("isii", $sequencia, $hojeStr, $sequencia, $id);
+    $stmt->execute();
+}
+
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
 $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];

@@ -14,6 +14,8 @@ $stmt = $conexao->prepare("
     SELECT 
         idPersonagem,
         vidaAtualPersonagem,
+        vidaMaximaPersonagem,
+        ultimaRecargaVidaPersonagem,
         xpPersonagem,
         avatarPersonagem
     FROM personagem
@@ -26,6 +28,15 @@ $stmt->execute();
 $personagem = $stmt->get_result()->fetch_assoc();
 
 $avatar = json_decode($personagem["avatarPersonagem"], true) ?? [];
+
+include "../vida.php";
+$personagem['vidaAtualPersonagem'] = recarregarVida(
+    $conexao,
+    $personagem['idPersonagem'],
+    $personagem['vidaAtualPersonagem'],
+    $personagem['vidaMaximaPersonagem'],
+    $personagem['ultimaRecargaVidaPersonagem']
+);
 
 // idConteudo vem da URL ou POST
 $idConteudo = isset($_GET['conteudo'])

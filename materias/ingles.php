@@ -12,8 +12,12 @@ $id = $_SESSION['idUsuario'];
 $sql = "
         SELECT
             u.sequenciaCheckinUsuario,
+            u.ultimoCheckinUsuario,
+            p.idPersonagem,
             p.nomePersonagem,
             p.vidaAtualPersonagem,
+            p.vidaMaximaPersonagem,
+            p.ultimaRecargaVidaPersonagem,
             p.nivelPersonagem,
             p.xpPersonagem,
             p.avatarPersonagem
@@ -30,6 +34,14 @@ $dados = $stmt->get_result()->fetch_assoc();
 
 $nomePersonagem = $dados["nomePersonagem"];
 $vida            = $dados["vidaAtualPersonagem"];
+include "vida.php";
+$vida = recarregarVida(
+    $conexao,
+    $dados["idPersonagem"],
+    $vida,
+    $dados["vidaMaximaPersonagem"],
+    $dados["ultimaRecargaVidaPersonagem"]
+);
 $sequencia       = $dados["sequenciaCheckinUsuario"];
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
