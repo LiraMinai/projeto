@@ -7,6 +7,8 @@ if (!isset($_SESSION["idUsuario"])) {
     exit;
 }
 
+$id = $_SESSION['idUsuario'];
+
 $sql = "
         SELECT
             u.sequenciaCheckinUsuario,
@@ -67,14 +69,14 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <?php endif; ?>
         <div class="hud">
         <?php
-        $caminhoAvatar = "";
+        $caminhoAvatar = "../";
         include "../avatar.php";
         ?>
         <div class="info">
-            <span class="nome"><?= $nomePersonagem ?></span>
+            <span class="textoPersonagem"><?= $nomePersonagem ?></span>
             <div class="status">
-                <span>❤️ <?= $vida ?></span>
-                <span>🔥 <?= $sequencia ?></span>
+                <span class="textoPersonagem">❤️ <?= $vida ?></span>
+                <span class="textoPersonagem">🔥 <?= $sequencia ?></span>
             </div>
         </div>
     </div>
