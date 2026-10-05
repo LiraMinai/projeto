@@ -4,6 +4,16 @@
 // INGLÊS
 // ======================================================
 
+$resultado = $conexao->query("
+    SHOW COLUMNS FROM conteudo LIKE 'explicacaoConteudo'
+");
+
+if ($resultado->num_rows == 0) {
+    $conexao->query("
+        ALTER TABLE conteudo
+        ADD explicacaoConteudo TEXT
+    ");
+}
 
 // ------------------------------------------------------
 // CONTEÚDOS

@@ -7,8 +7,12 @@ $id = $_SESSION['idUsuario'];
 $sql = "
         SELECT
             u.sequenciaCheckinUsuario,
+            u.ultimoCheckinUsuario,
+            p.idPersonagem,
             p.nomePersonagem,
             p.vidaAtualPersonagem,
+            p.vidaMaximaPersonagem,
+            p.ultimaRecargaVidaPersonagem,
             p.nivelPersonagem,
             p.xpPersonagem,
             p.avatarPersonagem
@@ -25,7 +29,19 @@ $dados = $stmt->get_result()->fetch_assoc();
 
 $nomePersonagem = $dados["nomePersonagem"];
 $vida            = $dados["vidaAtualPersonagem"];
+include "vida.php";
+$vida = recarregarVida(
+    $conexao,
+    $dados["idPersonagem"],
+    $vida,
+    $dados["vidaMaximaPersonagem"],
+    $dados["ultimaRecargaVidaPersonagem"]
+);
+
 $sequencia       = $dados["sequenciaCheckinUsuario"];
+include "checkin.php";
+$sequencia = verificarCheckin($conexao, $id, $dados['ultimoCheckinUsuario'], $sequencia);
+
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
 $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
@@ -37,6 +53,7 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>YDUTS</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
     <header>
@@ -51,12 +68,15 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
 </div>
     <div class="hud">
-        <?php include "/avatar.php"; ?>
+        <?php
+        $caminhoAvatar = "";
+        include "avatar.php";
+        ?>
         <div class="info">
-            <span class="nome"><?= $nomePersonagem ?></span>
+            <span class="textoPersonagem"><?= $nomePersonagem ?></span>
             <div class="status">
-                <span>❤️ <?= $vida ?></span>
-                <span>🔥 <?= $sequencia ?></span>
+                <span class="textoPersonagem">❤️ <?= $vida ?></span>
+                <span class="textoPersonagem">🔥 <?= $sequencia ?></span>
             </div>
         </div>
     </div>

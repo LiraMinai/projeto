@@ -8,6 +8,7 @@ include("conexao.php");
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Entrar</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
     <header>
@@ -48,11 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
 
         } else {
-            echo "Senha incorreta!";
+            echo "<div class='centralizar'>";
+            echo "<span class='textodif'>Senha incorreta!</span>";
+            echo "</div>";
         }
 
     } else {
-        echo "Usuário não encontrado!";
+        echo "<div class='centralizar'>";
+            echo "<span class='textodif'>Usuário não encontrado!</span>";
+            echo "</div>";;
     }
 }
 ?>

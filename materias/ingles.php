@@ -7,6 +7,50 @@ if (!isset($_SESSION["idUsuario"])) {
     exit;
 }
 
+$id = $_SESSION['idUsuario'];
+
+$sql = "
+        SELECT
+            u.sequenciaCheckinUsuario,
+            u.ultimoCheckinUsuario,
+            p.idPersonagem,
+            p.nomePersonagem,
+            p.vidaAtualPersonagem,
+            p.vidaMaximaPersonagem,
+            p.ultimaRecargaVidaPersonagem,
+            p.nivelPersonagem,
+            p.xpPersonagem,
+            p.avatarPersonagem
+        FROM usuario u
+        INNER JOIN personagem p
+        ON u.idUsuario = p.idUsuario
+        WHERE u.idUsuario = ?
+        ";
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$dados = $stmt->get_result()->fetch_assoc();
+
+$nomePersonagem = $dados["nomePersonagem"];
+$vida            = $dados["vidaAtualPersonagem"];
+include "../vida.php";
+$vida = recarregarVida(
+    $conexao,
+    $dados["idPersonagem"],
+    $vida,
+    $dados["vidaMaximaPersonagem"],
+    $dados["ultimaRecargaVidaPersonagem"]
+);
+
+$sequencia       = $dados["sequenciaCheckinUsuario"];
+include "../checkin.php";
+$sequencia = verificarCheckin($conexao, $id, $dados['ultimoCheckinUsuario'], $sequencia);
+
+$nivel           = $dados["nivelPersonagem"];
+$xp              = $dados["xpPersonagem"];
+$avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
+
 $idMateria = 2;
 
 $stmt = $conexao->prepare("SELECT idConteudo, nomeConteudo FROM conteudo WHERE idMateria = ? ORDER BY idConteudo");
@@ -20,6 +64,7 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css">
     <title>Inglês</title>
+    <link rel="icon" type="image/png" href="../imagens/logo.png">
 </head>
 <body>
     <header>
@@ -40,6 +85,18 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <?php if (empty($conteudos)): ?>
             <p class="texto">Nenhum conteúdo cadastrado ainda. Rode o instalardados.php.</p>
         <?php endif; ?>
+        <div class="hud">
+        <?php
+        $caminhoAvatar = "../";
+        include "../avatar.php";
+        ?>
+        <div class="info">
+            <span class="textoPersonagem"><?= $nomePersonagem ?></span>
+            <div class="status">
+                <span class="textoPersonagem">❤️ <?= $vida ?></span>
+                <span class="textoPersonagem">🔥 <?= $sequencia ?></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>

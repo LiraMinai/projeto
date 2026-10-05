@@ -92,19 +92,12 @@ const sapatos = {
     sapatoPreto: new Image()
 };
 
-
 const colares = {
     nenhum: null,
     colarOuro: new Image(),
     colarOuroDuplo: new Image(),
     colarPrata: new Image(),
     colarPrataDuplo: new Image()
-};
-
-const pulseirasContorno = {
-    nenhum: null,
-    pulseira1: new Image(),
-    pulseira2: new Image()
 };
 
 const estampas = {
@@ -179,11 +172,6 @@ colares.colarOuroDuplo.src = CAMINHO_IMAGENS + "colarOuroDuplo.png";
 colares.colarPrata.src = CAMINHO_IMAGENS + "colarPrata.png";
 colares.colarPrataDuplo.src = CAMINHO_IMAGENS + "colarPrataDuplo.png";
 
-pulseirasFundo.pulseira1.src = CAMINHO_IMAGENS + "pulseira1Fundo.png";
-pulseirasContorno.pulseira1.src = CAMINHO_IMAGENS + "pulseira1Contorno.png";
-pulseirasFundo.pulseira2.src = CAMINHO_IMAGENS + "primeiraPartePulseira2.png";
-pulseirasContorno.pulseira2.src = CAMINHO_IMAGENS + "segundaPartePulseira2.png";
-
 estampas.estampa1.src = CAMINHO_IMAGENS + "estampa1.png";
 estampas.estampa2.src = CAMINHO_IMAGENS + "estampa2.png";
 estampas.estampa3.src = CAMINHO_IMAGENS + "estampa3.png";
@@ -202,8 +190,6 @@ const seletorRoupaSuperior = document.getElementById("roupaSuperior");
 const seletorRoupaInfeiror = document.getElementById("roupaInferior");
 const seletorSapato = document.getElementById("sapatos");
 const seletorColar = document.getElementById("colar");
-const seletorPulseira = document.getElementById("pulseira");
-const seletorCorPulseira = document.getElementById("pulseiraColor");
 const seletorEstampa = document.getElementById("estampa");
 
 const campoOcultoCabelo = document.getElementById("campoCabelo");
@@ -217,8 +203,6 @@ const campoOcultoRoupaSuperior = document.getElementById("campoRoupaSuperior");
 const campoOcultoRoupaInferior = document.getElementById("campoRoupaInferior");
 const campoOcultoSapato = document.getElementById("campoSapato");
 const campoOcultoColar = document.getElementById("campoColar");
-const campoOcultoPulseira = document.getElementById("campoPulseira");
-const campoOcultoCorPulseira = document.getElementById("campoCorPulseira");
 const campoOcultoEstampa = document.getElementById("campoEstampa");
 
 let cabelosSelecionado = "nenhum";
@@ -226,13 +210,11 @@ let roupaSuperiorSelecionada = "nenhuma";
 let roupaInferiorSelecionada = "nenhuma";
 let sapatoSelecionado = "nenhum";
 let colarSelecionado = "nenhum";
-let pulseiraSelecionada = "nenhum";
 let estampaSelecionada = "nenhuma";
 let corOlhos = seletorOlhos.value;
 let corOlhosDireito = seletorOlhosDireito.value;
 let corCorpo = seletorCorpo.value;
 let corCabelo = seletorCorCabelo.value;
-let corPulseira = seletorCorPulseira.value;
 
 seletorCabelos.addEventListener("change", () => {
     cabelosSelecionado = seletorCabelos.value;
@@ -261,16 +243,6 @@ seletorSapato.addEventListener("change", () => {
 
 seletorColar.addEventListener("change", () => {
     colarSelecionado = seletorColar.value;
-    desenhar();
-});
-
-seletorPulseira.addEventListener("change", () => {
-    pulseiraSelecionada = seletorPulseira.value;
-    desenhar();
-});
-
-seletorCorPulseira.addEventListener("input", () => {
-    corPulseira = seletorCorPulseira.value;
     desenhar();
 });
 
@@ -321,7 +293,6 @@ let imagensParaCarregar = [
     roupasInferiores.saiaAzul, roupasInferiores.saiaBranca, roupasInferiores.saiaMarrom, roupasInferiores.saiaPreta, roupasInferiores.saiaRoxa,
     sapatos.sapatoAzul, sapatos.sapatoBranco, sapatos.sapatoMarrom, sapatos.sapatoVermelho, sapatos.sapatoPreto,
     colares.colarOuro, colares.colarOuroDuplo, colares.colarPrata, colares.colarPrataDuplo,
-    pulseirasFundo.pulseira1, pulseirasContorno.pulseira1, pulseirasFundo.pulseira2, pulseirasContorno.pulseira2,
     estampas.estampa1, estampas.estampa2, estampas.estampa3, estampas.estampa4
 ];
 
@@ -370,8 +341,6 @@ function sincronizarFormulario() {
     campoOcultoRoupaInferior.value = roupaInferiorSelecionada;
     campoOcultoSapato.value = sapatoSelecionado;
     campoOcultoColar.value = colarSelecionado;
-    campoOcultoPulseira.value = pulseiraSelecionada;
-    campoOcultoCorPulseira.value = corPulseira;
     campoOcultoEstampa.value = estampaSelecionada;
 }
 

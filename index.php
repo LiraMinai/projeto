@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>YDUTS</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
 </head>
 <body>
     <div class="wave">

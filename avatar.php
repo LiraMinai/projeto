@@ -1,5 +1,5 @@
 <div class="avatar">
-    <canvas id="avatarHud" width="320" height="320"></canvas> 
+    <canvas id="avatarHud" width="300" height="300"></canvas> 
 </div> 
 
 <script> window.dadosAvatar = 
@@ -8,6 +8,8 @@
         JSON_HEX_APOS | 
         JSON_HEX_QUOT | 
         JSON_HEX_AMP ) ?>;
+
+        window.caminhoAvatar = "<?= $caminhoAvatar ?>";
 </script> 
 
-<script src="pixelArt/exibirAvatar.js" defer></script>
+<script src="<?= $caminhoAvatar ?>pixelArt/exibirAvatar.js" defer></script>

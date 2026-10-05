@@ -9,7 +9,8 @@
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
 
-    const CAMINHO_IMAGENS = "pixelArt/";
+    const CAMINHO_IMAGENS =
+    (window.caminhoAvatar || "") + "pixelArt/";
 
     const cabelosPermitidos = [
         "cabeloCrespo",
@@ -83,7 +84,6 @@
     ];
 
     const arquivos = {
-        fundo: "Fundo.png",
         corpo: "corpo.png",
         corpoContorno: "corpoContorno.png",
         olhos: "olhos.png",
@@ -173,14 +173,6 @@
         const y = (canvas.height - tamanho) / 2;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.drawImage(
-            imagens.fundo,
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
 
         const corpoColorido = pintarImagem(
             imagens.corpo,
