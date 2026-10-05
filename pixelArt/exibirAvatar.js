@@ -9,8 +9,7 @@
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
 
-    const CAMINHO_IMAGENS =
-    (window.caminhoAvatar || "") + "pixelArt/";
+    const CAMINHO_IMAGENS = (window.caminhoAvatar || "") + "pixelArt/";
 
     const cabelosPermitidos = [
         "cabeloCrespo",
@@ -21,66 +20,33 @@
         "cabeloRaspadoLateral"
     ];
 
+    const acessoriosCabecaPermitidos = [
+        "lacoCaveira",
+        "boneDipper"
+    ];
+
     const roupasSuperioresPermitidas = [
-        "camisaAmarela",
-        "camisaAzul",
-        "camisaBranca",
-        "camisaPreta",
-        "camisaRoxa",
-        "camisaVerde",
-        "camisaVermelha",
-        "camisetaAmarela",
-        "camisetaAzul",
-        "camisetaBranca",
-        "camisetaPreta",
-        "camisetaRoxa",
-        "camisetaVerde",
-        "camisetaVermelha",
-        "regataAmarela",
-        "regataAzul",
-        "regataBranca",
-        "regataPreta",
-        "regataRoxa",
-        "regataVerde",
-        "regataVermelha"
+        "camisaAmarela", "camisaAzul", "camisaBranca", "camisaPreta", "camisaRoxa", "camisaVerde", "camisaVermelha",
+        "camisetaAmarela", "camisetaAzul", "camisetaBranca", "camisetaPreta", "camisetaRoxa", "camisetaVerde", "camisetaVermelha",
+        "regataAmarela", "regataAzul", "regataBranca", "regataPreta", "regataRoxa", "regataVerde", "regataVermelha"
     ];
 
     const roupasInferioresPermitidas = [
-        "bermudaAzul",
-        "bermudaBranca",
-        "bermudaMarrom",
-        "bermudaPreta",
-        "calcaAzul",
-        "calcaBranca",
-        "calcaMarrom",
-        "calcaPreta",
-        "saiaAzul",
-        "saiaBranca",
-        "saiaMarrom",
-        "saiaPreta",
-        "saiaRoxa"
+        "bermudaAzul", "bermudaBranca", "bermudaMarrom", "bermudaPreta",
+        "calcaAzul", "calcaBranca", "calcaMarrom", "calcaPreta",
+        "saiaAzul", "saiaBranca", "saiaMarrom", "saiaPreta", "saiaRoxa"
     ];
 
     const sapatosPermitidos = [
-        "sapatoAzul",
-        "sapatoBranco",
-        "sapatoMarrom",
-        "sapatoVermelho",
-        "sapatoPreto"
+        "sapatoAzul", "sapatoBranco", "sapatoMarrom", "sapatoVermelho", "sapatoPreto"
     ];
 
     const colaresPermitidos = [
-        "colarOuro",
-        "colarOuroDuplo",
-        "colarPrata",
-        "colarPrataDuplo"
+        "colarOuro", "colarOuroDuplo", "colarPrata", "colarPrataDuplo"
     ];
 
     const estampasPermitidas = [
-        "estampa1",
-        "estampa2",
-        "estampa3",
-        "estampa4"
+        "estampa1", "estampa2", "estampa3", "estampa4"
     ];
 
     const arquivos = {
@@ -97,6 +63,10 @@
     if (cabelosPermitidos.includes(dados.cabelo)) {
         arquivos.cabelo = dados.cabelo + ".png";
         arquivos.cabeloContorno = dados.cabelo + "Contorno.png";
+    }
+
+    if (acessoriosCabecaPermitidos.includes(dados.acessorioCabeca)) {
+        arquivos.acessorioCabeca = dados.acessorioCabeca + ".png";
     }
 
     if (roupasSuperioresPermitidas.includes(dados.roupaSuperior)) {
@@ -148,12 +118,7 @@
         contextoTemporario.drawImage(imagem, 0, 0);
         contextoTemporario.globalCompositeOperation = "source-in";
         contextoTemporario.fillStyle = cor;
-        contextoTemporario.fillRect(
-            0,
-            0,
-            temporario.width,
-            temporario.height
-        );
+        contextoTemporario.fillRect(0, 0, temporario.width, temporario.height);
 
         contextoTemporario.globalCompositeOperation = "source-over";
 
@@ -193,33 +158,15 @@
             );
 
             ctx.drawImage(cabeloColorido, x, y, tamanho, tamanho);
-            ctx.drawImage(
-                imagens.cabeloContorno,
-                x,
-                y,
-                tamanho,
-                tamanho
-            );
+            ctx.drawImage(imagens.cabeloContorno, x, y, tamanho, tamanho);
         }
 
         if (imagens.roupaInferior) {
-            ctx.drawImage(
-                imagens.roupaInferior,
-                x,
-                y,
-                tamanho,
-                tamanho
-            );
+            ctx.drawImage(imagens.roupaInferior, x, y, tamanho, tamanho);
         }
 
         if (imagens.roupaSuperior) {
-            ctx.drawImage(
-                imagens.roupaSuperior,
-                x,
-                y,
-                tamanho,
-                tamanho
-            );
+            ctx.drawImage(imagens.roupaSuperior, x, y, tamanho, tamanho);
         }
 
         if (imagens.estampa) {
@@ -250,6 +197,10 @@
             );
 
             ctx.drawImage(olhoDireito, x, y, tamanho, tamanho);
+        }
+
+        if (imagens.acessorioCabeca) {
+            ctx.drawImage(imagens.acessorioCabeca, x, y, tamanho, tamanho);
         }
     }
 

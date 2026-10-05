@@ -41,71 +41,39 @@ const cabelosContorno = {
     cabeloRaspadoLateral: new Image()
 };
 
+const acessoriosCabeca = {
+    nenhum: null,
+    lacoCaveira: new Image(),
+    boneDipper: new Image()
+};
+
 const roupasSuperiores = {
     nenhuma: null,
-    camisaAmarela: new Image(),
-    camisaAzul: new Image(),
-    camisaBranca: new Image(),
-    camisaPreta: new Image(),
-    camisaRoxa: new Image(),
-    camisaVerde: new Image(),
-    camisaVermelha: new Image(),
-    camisetaAmarela: new Image(),
-    camisetaAzul: new Image(),
-    camisetaBranca: new Image(),
-    camisetaPreta: new Image(),
-    camisetaRoxa: new Image(),
-    camisetaVerde: new Image(),
-    camisetaVermelha: new Image(),
-    regataAmarela: new Image(),
-    regataAzul: new Image(),
-    regataBranca: new Image(),
-    regataPreta: new Image(),
-    regataRoxa: new Image(),
-    regataVerde: new Image(),
-    regataVermelha: new Image()
+    camisaAmarela: new Image(), camisaAzul: new Image(), camisaBranca: new Image(), camisaPreta: new Image(), camisaRoxa: new Image(), camisaVerde: new Image(), camisaVermelha: new Image(),
+    camisetaAmarela: new Image(), camisetaAzul: new Image(), camisetaBranca: new Image(), camisetaPreta: new Image(), camisetaRoxa: new Image(), camisetaVerde: new Image(), camisetaVermelha: new Image(),
+    regataAmarela: new Image(), regataAzul: new Image(), regataBranca: new Image(), regataPreta: new Image(), regataRoxa: new Image(), regataVerde: new Image(), regataVermelha: new Image()
 };
 
 const roupasInferiores = {
     nenhuma: null,
-    bermudaAzul: new Image(),
-    bermudaBranca: new Image(),
-    bermudaMarrom: new Image(),
-    bermudaPreta: new Image(),
-    calcaAzul: new Image(),
-    calcaBranca: new Image(),
-    calcaMarrom: new Image(),
-    calcaPreta: new Image(),
-    saiaAzul: new Image(),
-    saiaBranca: new Image(),
-    saiaMarrom: new Image(),
-    saiaPreta: new Image(),
-    saiaRoxa: new Image()
+    bermudaAzul: new Image(), bermudaBranca: new Image(), bermudaMarrom: new Image(), bermudaPreta: new Image(),
+    calcaAzul: new Image(), calcaBranca: new Image(), calcaMarrom: new Image(), calcaPreta: new Image(),
+    saiaAzul: new Image(), saiaBranca: new Image(), saiaMarrom: new Image(), saiaPreta: new Image(), saiaRoxa: new Image()
 };
 
 const sapatos = {
     nenhum: null,
-    sapatoAzul: new Image(),
-    sapatoBranco: new Image(),
-    sapatoMarrom: new Image(),
-    sapatoVermelho: new Image(),
-    sapatoPreto: new Image()
+    sapatoAzul: new Image(), sapatoBranco: new Image(), sapatoMarrom: new Image(), sapatoVermelho: new Image(), sapatoPreto: new Image()
 };
 
 const colares = {
     nenhum: null,
-    colarOuro: new Image(),
-    colarOuroDuplo: new Image(),
-    colarPrata: new Image(),
-    colarPrataDuplo: new Image()
+    colarOuro: new Image(), colarOuroDuplo: new Image(), colarPrata: new Image(), colarPrataDuplo: new Image()
 };
 
 const estampas = {
     nenhuma: null,
-    estampa1: new Image(),
-    estampa2: new Image(),
-    estampa3: new Image(),
-    estampa4: new Image()
+    estampa1: new Image(), estampa2: new Image(), estampa3: new Image(), estampa4: new Image()
 };
 
 cabelos.cabeloCrespo.src = CAMINHO_IMAGENS + "cabeloCrespo.png";
@@ -122,6 +90,9 @@ cabelosContorno.cabeloLongo.src = CAMINHO_IMAGENS + "cabeloLongoContorno.png";
 cabelosContorno.cabeloRaspado.src = CAMINHO_IMAGENS + "cabeloRaspadoContorno.png";
 cabelosContorno.cabeloRaspadoLateral.src = CAMINHO_IMAGENS + "cabeloRaspadoLateralContorno.png";
 
+acessoriosCabeca.lacoCaveira.src = CAMINHO_IMAGENS + "lacoCaveira.png";
+acessoriosCabeca.boneDipper.src = CAMINHO_IMAGENS + "boneDipper.png";
+
 roupasSuperiores.camisaAmarela.src = CAMINHO_IMAGENS + "camisaAmarela.png";
 roupasSuperiores.camisaAzul.src = CAMINHO_IMAGENS + "camisaAzul.png";
 roupasSuperiores.camisaBranca.src = CAMINHO_IMAGENS + "camisaBranca.png";
@@ -136,7 +107,6 @@ roupasSuperiores.camisetaPreta.src = CAMINHO_IMAGENS + "camisetaPreta.png";
 roupasSuperiores.camisetaRoxa.src = CAMINHO_IMAGENS + "camisetaRoxa.png";
 roupasSuperiores.camisetaVerde.src = CAMINHO_IMAGENS + "camisetaVerde.png";
 roupasSuperiores.camisetaVermelha.src = CAMINHO_IMAGENS + "camisetaVermelha.png";
-
 roupasSuperiores.regataAmarela.src = CAMINHO_IMAGENS + "regataAmarela.png";
 roupasSuperiores.regataAzul.src = CAMINHO_IMAGENS + "regataAzul.png";
 roupasSuperiores.regataBranca.src = CAMINHO_IMAGENS + "regataBranca.png";
@@ -149,12 +119,10 @@ roupasInferiores.bermudaAzul.src = CAMINHO_IMAGENS + "bermudaAzul.png";
 roupasInferiores.bermudaBranca.src = CAMINHO_IMAGENS + "bermudaBranca.png";
 roupasInferiores.bermudaMarrom.src = CAMINHO_IMAGENS + "bermudaMarrom.png";
 roupasInferiores.bermudaPreta.src = CAMINHO_IMAGENS + "bermudaPreta.png";
-
 roupasInferiores.calcaAzul.src = CAMINHO_IMAGENS + "calcaAzul.png";
 roupasInferiores.calcaBranca.src = CAMINHO_IMAGENS + "calcaBranca.png";
 roupasInferiores.calcaMarrom.src = CAMINHO_IMAGENS + "calcaMarrom.png";
 roupasInferiores.calcaPreta.src = CAMINHO_IMAGENS + "calcaPreta.png";
-
 roupasInferiores.saiaAzul.src = CAMINHO_IMAGENS + "saiaAzul.png";
 roupasInferiores.saiaBranca.src = CAMINHO_IMAGENS + "saiaBranca.png";
 roupasInferiores.saiaMarrom.src = CAMINHO_IMAGENS + "saiaMarrom.png";
@@ -186,6 +154,7 @@ const seletorCorpo = document.getElementById("skinColor");
 const checkboxVitiligo = document.getElementById("vitiligo");
 const checkboxHeterocromia = document.getElementById("heterocromia");
 const seletorCabelos = document.getElementById("cabelos");
+const seletorAcessorioCabeca = document.getElementById("acessorioCabeca");
 const seletorRoupaSuperior = document.getElementById("roupaSuperior");
 const seletorRoupaInfeiror = document.getElementById("roupaInferior");
 const seletorSapato = document.getElementById("sapatos");
@@ -193,6 +162,7 @@ const seletorColar = document.getElementById("colar");
 const seletorEstampa = document.getElementById("estampa");
 
 const campoOcultoCabelo = document.getElementById("campoCabelo");
+const campoOcultoAcessorioCabeca = document.getElementById("campoAcessorioCabeca");
 const campoOcultoCorCabelo = document.getElementById("campoCorCabelo");
 const campoOcultoCorOlhoEsquerdo = document.getElementById("campoCorOlhoEsquerdo");
 const campoOcultoCorOlhoDireito = document.getElementById("campoCorOlhoDireito");
@@ -206,6 +176,7 @@ const campoOcultoColar = document.getElementById("campoColar");
 const campoOcultoEstampa = document.getElementById("campoEstampa");
 
 let cabelosSelecionado = "nenhum";
+let acessorioCabecaSelecionado = "nenhum";
 let roupaSuperiorSelecionada = "nenhuma";
 let roupaInferiorSelecionada = "nenhuma";
 let sapatoSelecionado = "nenhum";
@@ -218,6 +189,11 @@ let corCabelo = seletorCorCabelo.value;
 
 seletorCabelos.addEventListener("change", () => {
     cabelosSelecionado = seletorCabelos.value;
+    desenhar();
+});
+
+seletorAcessorioCabeca.addEventListener("change", () => {
+    acessorioCabecaSelecionado = seletorAcessorioCabeca.value;
     desenhar();
 });
 
@@ -281,6 +257,7 @@ let imagensParaCarregar = [
     fundo, corpo, corpoContorno, vitiligo, olhos, pupila, pupilaDireita,
     cabelos.cabeloCrespo, cabelos.cabeloCurto, cabelos.cabeloMedio, cabelos.cabeloLongo, cabelos.cabeloRaspado, cabelos.cabeloRaspadoLateral,
     cabelosContorno.cabeloCrespo, cabelosContorno.cabeloCurto, cabelosContorno.cabeloMedio, cabelosContorno.cabeloLongo, cabelosContorno.cabeloRaspado, cabelosContorno.cabeloRaspadoLateral,
+    acessoriosCabeca.lacoCaveira, acessoriosCabeca.boneDipper,
     roupasSuperiores.camisaAmarela, roupasSuperiores.camisaAzul, roupasSuperiores.camisaBranca, roupasSuperiores.camisaPreta, roupasSuperiores.camisaRoxa,
     roupasSuperiores.camisaVerde, roupasSuperiores.camisaVermelha, roupasSuperiores.camisetaAmarela, roupasSuperiores.camisetaAzul,
     roupasSuperiores.camisetaBranca, roupasSuperiores.camisetaPreta, roupasSuperiores.camisetaRoxa, roupasSuperiores.camisetaVerde,
@@ -331,6 +308,7 @@ function pintarImagem(imagem, cor) {
 
 function sincronizarFormulario() {
     campoOcultoCabelo.value = cabelosSelecionado;
+    campoOcultoAcessorioCabeca.value = acessorioCabecaSelecionado;
     campoOcultoCorCabelo.value = corCabelo;
     campoOcultoCorOlhoEsquerdo.value = corOlhos;
     campoOcultoCorOlhoDireito.value = corOlhosDireito;
@@ -429,6 +407,14 @@ function desenhar() {
     if (checkboxHeterocromia.checked) {
         const olhoDireito = pintarImagem(pupilaDireita, corOlhosDireito);
         ctx.drawImage(olhoDireito, x, y, tamanho, tamanho);
+    }
+
+    if (acessorioCabecaSelecionado !== "nenhum") {
+        const imagemAcessorio = acessoriosCabeca[acessorioCabecaSelecionado];
+
+        if (imagemAcessorio && imagemAcessorio.complete && imagemAcessorio.naturalWidth > 0) {
+            ctx.drawImage(imagemAcessorio, x, y, tamanho, tamanho);
+        }
     }
 
     sincronizarFormulario();
