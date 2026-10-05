@@ -34,7 +34,14 @@
         "camisetaPreta",
         "camisetaRoxa",
         "camisetaVerde",
-        "camisetaVermelha"
+        "camisetaVermelha",
+        "regataAmarela",
+        "regataAzul",
+        "regataBranca",
+        "regataPreta",
+        "regataRoxa",
+        "regataVerde",
+        "regataVermelha"
     ];
 
     const roupasInferioresPermitidas = [
@@ -45,7 +52,12 @@
         "calcaAzul",
         "calcaBranca",
         "calcaMarrom",
-        "calcaPreta"
+        "calcaPreta",
+        "saiaAzul",
+        "saiaBranca",
+        "saiaMarrom",
+        "saiaPreta",
+        "saiaRoxa"
     ];
 
     const sapatosPermitidos = [
@@ -54,6 +66,20 @@
         "sapatoMarrom",
         "sapatoVermelho",
         "sapatoPreto"
+    ];
+
+    const colaresPermitidos = [
+        "colarOuro",
+        "colarOuroDuplo",
+        "colarPrata",
+        "colarPrataDuplo"
+    ];
+
+    const estampasPermitidas = [
+        "estampa1",
+        "estampa2",
+        "estampa3",
+        "estampa4"
     ];
 
     const arquivos = {
@@ -83,6 +109,14 @@
 
     if (sapatosPermitidos.includes(dados.sapato)) {
         arquivos.sapato = dados.sapato + ".png";
+    }
+
+    if (colaresPermitidos.includes(dados.colar)) {
+        arquivos.colar = dados.colar + ".png";
+    }
+
+    if (estampasPermitidas.includes(dados.estampa)) {
+        arquivos.estampa = dados.estampa + ".png";
     }
 
     if (dados.heterocromia) {
@@ -194,6 +228,14 @@
                 tamanho,
                 tamanho
             );
+        }
+
+        if (imagens.estampa) {
+            ctx.drawImage(imagens.estampa, x, y, tamanho, tamanho);
+        }
+
+        if (imagens.colar) {
+            ctx.drawImage(imagens.colar, x, y, tamanho, tamanho);
         }
 
         if (imagens.sapato) {
