@@ -22,7 +22,8 @@
 
     const acessoriosCabecaPermitidos = [
         "lacoCaveira",
-        "boneDipper"
+        "boneDipper",
+        "lacoVermelho"
     ];
 
     const roupasSuperioresPermitidas = [

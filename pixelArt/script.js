@@ -44,36 +44,75 @@ const cabelosContorno = {
 const acessoriosCabeca = {
     nenhum: null,
     lacoCaveira: new Image(),
-    boneDipper: new Image()
+    boneDipper: new Image(),
+    lacoVermelho: new Image()
 };
 
 const roupasSuperiores = {
     nenhuma: null,
-    camisaAmarela: new Image(), camisaAzul: new Image(), camisaBranca: new Image(), camisaPreta: new Image(), camisaRoxa: new Image(), camisaVerde: new Image(), camisaVermelha: new Image(),
-    camisetaAmarela: new Image(), camisetaAzul: new Image(), camisetaBranca: new Image(), camisetaPreta: new Image(), camisetaRoxa: new Image(), camisetaVerde: new Image(), camisetaVermelha: new Image(),
-    regataAmarela: new Image(), regataAzul: new Image(), regataBranca: new Image(), regataPreta: new Image(), regataRoxa: new Image(), regataVerde: new Image(), regataVermelha: new Image()
+    camisaAmarela: new Image(), 
+    camisaAzul: new Image(), 
+    camisaBranca: new Image(), 
+    camisaPreta: new Image(), 
+    camisaRoxa: new Image(), 
+    camisaVerde: new Image(), 
+    camisaVermelha: new Image(),
+    camisetaAmarela: new Image(), 
+    camisetaAzul: new Image(), 
+    camisetaBranca: new Image(), 
+    camisetaPreta: new Image(), 
+    camisetaRoxa: new Image(), 
+    camisetaVerde: new Image(), 
+    camisetaVermelha: new Image(),
+    regataAmarela: new Image(), 
+    regataAzul: new Image(), 
+    regataBranca: new Image(), 
+    regataPreta: new Image(), 
+    regataRoxa: new Image(), 
+    regataVerde: new Image(), 
+    regataVermelha: new Image()
 };
 
 const roupasInferiores = {
     nenhuma: null,
-    bermudaAzul: new Image(), bermudaBranca: new Image(), bermudaMarrom: new Image(), bermudaPreta: new Image(),
-    calcaAzul: new Image(), calcaBranca: new Image(), calcaMarrom: new Image(), calcaPreta: new Image(),
-    saiaAzul: new Image(), saiaBranca: new Image(), saiaMarrom: new Image(), saiaPreta: new Image(), saiaRoxa: new Image()
+    bermudaAzul: new Image(), 
+    bermudaBranca: new Image(), 
+    bermudaMarrom: new Image(), 
+    bermudaPreta: new Image(),
+    calcaAzul: new Image(), 
+    calcaBranca: new Image(), 
+    calcaMarrom: new Image(), 
+    calcaPreta: new Image(),
+    saiaAzul: new Image(), 
+    saiaBranca: new Image(), 
+    saiaMarrom: new Image(), 
+    saiaPreta: new Image(), 
+    saiaRoxa: new Image()
 };
 
 const sapatos = {
     nenhum: null,
-    sapatoAzul: new Image(), sapatoBranco: new Image(), sapatoMarrom: new Image(), sapatoVermelho: new Image(), sapatoPreto: new Image()
+    sapatoAzul: new Image(), 
+    sapatoBranco: new Image(), 
+    sapatoMarrom: new Image(), 
+    sapatoVermelho: new Image(), 
+    sapatoPreto: new Image()
 };
 
 const colares = {
     nenhum: null,
-    colarOuro: new Image(), colarOuroDuplo: new Image(), colarPrata: new Image(), colarPrataDuplo: new Image()
+    colarOuro: new Image(), 
+    colarOuroDuplo: new Image(), 
+    colarPrata: new Image(), 
+    colarPrataDuplo: new Image()
 };
 
 const estampas = {
     nenhuma: null,
-    estampa1: new Image(), estampa2: new Image(), estampa3: new Image(), estampa4: new Image()
+    estampa1: new Image(), 
+    estampa2: new Image(), 
+    estampa3: new Image(), 
+    estampa4: new Image()
 };
 
 cabelos.cabeloCrespo.src = CAMINHO_IMAGENS + "cabeloCrespo.png";
@@ -92,6 +131,7 @@ cabelosContorno.cabeloRaspadoLateral.src = CAMINHO_IMAGENS + "cabeloRaspadoLater
 
 acessoriosCabeca.lacoCaveira.src = CAMINHO_IMAGENS + "lacoCaveira.png";
 acessoriosCabeca.boneDipper.src = CAMINHO_IMAGENS + "boneDipper.png";
+acessoriosCabeca.lacoVermelho.src = CAMINHO_IMAGENS + "lacoVermelho.png";
 
 roupasSuperiores.camisaAmarela.src = CAMINHO_IMAGENS + "camisaAmarela.png";
 roupasSuperiores.camisaAzul.src = CAMINHO_IMAGENS + "camisaAzul.png";
@@ -257,7 +297,7 @@ let imagensParaCarregar = [
     fundo, corpo, corpoContorno, vitiligo, olhos, pupila, pupilaDireita,
     cabelos.cabeloCrespo, cabelos.cabeloCurto, cabelos.cabeloMedio, cabelos.cabeloLongo, cabelos.cabeloRaspado, cabelos.cabeloRaspadoLateral,
     cabelosContorno.cabeloCrespo, cabelosContorno.cabeloCurto, cabelosContorno.cabeloMedio, cabelosContorno.cabeloLongo, cabelosContorno.cabeloRaspado, cabelosContorno.cabeloRaspadoLateral,
-    acessoriosCabeca.lacoCaveira, acessoriosCabeca.boneDipper,
+    acessoriosCabeca.lacoCaveira, acessoriosCabeca.boneDipper, acessoriosCabeca.lacoVermelho,
     roupasSuperiores.camisaAmarela, roupasSuperiores.camisaAzul, roupasSuperiores.camisaBranca, roupasSuperiores.camisaPreta, roupasSuperiores.camisaRoxa,
     roupasSuperiores.camisaVerde, roupasSuperiores.camisaVermelha, roupasSuperiores.camisetaAmarela, roupasSuperiores.camisetaAzul,
     roupasSuperiores.camisetaBranca, roupasSuperiores.camisetaPreta, roupasSuperiores.camisetaRoxa, roupasSuperiores.camisetaVerde,
