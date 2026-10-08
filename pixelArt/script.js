@@ -232,7 +232,7 @@ seletorCabelos.addEventListener("change", () => {
     desenhar();
 });
 
-seletorAcessorioCabeca.addEventListener("change", () => {
+seletorAcessorioCabeca?.addEventListener("change", () => {
     acessorioCabecaSelecionado = seletorAcessorioCabeca.value;
     desenhar();
 });
@@ -257,12 +257,12 @@ seletorSapato.addEventListener("change", () => {
     desenhar();
 });
 
-seletorColar.addEventListener("change", () => {
+seletorColar?.addEventListener("change", () => {
     colarSelecionado = seletorColar.value;
     desenhar();
 });
 
-seletorEstampa.addEventListener("change", () => {
+seletorEstampa?.addEventListener("change", () => {
     estampaSelecionada = seletorEstampa.value;
     desenhar();
 });
@@ -348,7 +348,6 @@ function pintarImagem(imagem, cor) {
 
 function sincronizarFormulario() {
     campoOcultoCabelo.value = cabelosSelecionado;
-    campoOcultoAcessorioCabeca.value = acessorioCabecaSelecionado;
     campoOcultoCorCabelo.value = corCabelo;
     campoOcultoCorOlhoEsquerdo.value = corOlhos;
     campoOcultoCorOlhoDireito.value = corOlhosDireito;
@@ -358,8 +357,16 @@ function sincronizarFormulario() {
     campoOcultoRoupaSuperior.value = roupaSuperiorSelecionada;
     campoOcultoRoupaInferior.value = roupaInferiorSelecionada;
     campoOcultoSapato.value = sapatoSelecionado;
-    campoOcultoColar.value = colarSelecionado;
-    campoOcultoEstampa.value = estampaSelecionada;
+
+    if (campoOcultoAcessorioCabeca) {
+        campoOcultoAcessorioCabeca.value = acessorioCabecaSelecionado;
+    }
+    if (campoOcultoColar) {
+        campoOcultoColar.value = colarSelecionado;
+    }
+    if (campoOcultoEstampa) {
+        campoOcultoEstampa.value = estampaSelecionada;
+    }
 }
 
 function desenhar() {
