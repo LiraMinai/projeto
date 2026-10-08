@@ -105,9 +105,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <br>
-
+        <div class="centralizar">
         <button type="submit">Prosseguir</button>
-
+        </div>
     </form>
 
     <?php
