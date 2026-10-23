@@ -321,6 +321,21 @@ function aplicarAvatarInicial(a) {
 
     sapatoSelecionado = a.sapato ?? "nenhum";
     seletorSapato.value = sapatoSelecionado;
+
+        acessorioCabecaSelecionado = a.acessorioCabeca ?? "nenhum";
+    if (seletorAcessorioCabeca) {
+        seletorAcessorioCabeca.value = acessorioCabecaSelecionado;
+    }
+
+    colarSelecionado = a.colar ?? "nenhum";
+    if (seletorColar) {
+        seletorColar.value = colarSelecionado;
+    }
+
+    estampaSelecionada = a.estampa ?? "nenhuma";
+    if (seletorEstampa) {
+        seletorEstampa.value = estampaSelecionada;
+    }
 }
 
 if (window.avatarInicial) {
