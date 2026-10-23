@@ -9,10 +9,10 @@ $resultado = $conexao->query("
 ");
 
 if ($resultado->num_rows == 0) {
-    $conexao->query("
-        ALTER TABLE conteudo
-        ADD explicacaoConteudo TEXT
-    ");
+    $conexao->query("ALTER TABLE conteudo ADD explicacaoConteudo TEXT");
+} else {
+    // garante que a coluna comporta os textos longos
+    $conexao->query("ALTER TABLE conteudo MODIFY COLUMN explicacaoConteudo TEXT");
 }
 
 // ------------------------------------------------------
@@ -20,7 +20,7 @@ if ($resultado->num_rows == 0) {
 // ------------------------------------------------------
 
 $sql = <<<SQL
-INSERT IGNORE INTO conteudo
+INSERT INTO conteudo
 (idConteudo, idMateria, nomeConteudo, explicacaoConteudo)
 VALUES
 
@@ -142,6 +142,11 @@ VARIAÇÃO HISTÓRICA: acontece porque a língua muda ao longo do tempo.
 VARIAÇÃO SITUACIONAL: depende do contexto. Em uma situação formal, por exemplo, podemos utilizar uma linguagem diferente daquela usada em uma conversa com amigos.
 
 A existência de diferentes formas de falar não significa que uma pessoa não saiba português. É importante compreender o contexto em que cada variedade linguística é utilizada.')
+
+ON DUPLICATE KEY UPDATE
+    idMateria = VALUES(idMateria),
+    nomeConteudo = VALUES(nomeConteudo),
+    explicacaoConteudo = VALUES(explicacaoConteudo)
 SQL;
 
 if (mysqli_query($conexao, $sql)) {
@@ -156,7 +161,7 @@ if (mysqli_query($conexao, $sql)) {
 // ------------------------------------------------------
 
 $sql = <<<SQL
-INSERT IGNORE INTO questao
+INSERT INTO questao
 (idQuestao, idConteudo, enunciadoQuestao,
 opcao1Questao, opcao2Questao, opcao3Questao, opcao4Questao,
 respostaCorretaQuestao, statusQuestao, classificacaoQuestao, xpQuestao)
@@ -361,6 +366,18 @@ VALUES
 'Situacional',
 'Geográfica',
 3, 1, 'Médio', 15)
+
+ON DUPLICATE KEY UPDATE
+    idConteudo = VALUES(idConteudo),
+    enunciadoQuestao = VALUES(enunciadoQuestao),
+    opcao1Questao = VALUES(opcao1Questao),
+    opcao2Questao = VALUES(opcao2Questao),
+    opcao3Questao = VALUES(opcao3Questao),
+    opcao4Questao = VALUES(opcao4Questao),
+    respostaCorretaQuestao = VALUES(respostaCorretaQuestao),
+    statusQuestao = VALUES(statusQuestao),
+    classificacaoQuestao = VALUES(classificacaoQuestao),
+    xpQuestao = VALUES(xpQuestao)
 SQL;
 
 if (mysqli_query($conexao, $sql)) {

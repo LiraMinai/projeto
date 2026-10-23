@@ -9,10 +9,10 @@ $resultado = $conexao->query("
 ");
 
 if ($resultado->num_rows == 0) {
-    $conexao->query("
-        ALTER TABLE conteudo
-        ADD explicacaoConteudo TEXT
-    ");
+    $conexao->query("ALTER TABLE conteudo ADD explicacaoConteudo TEXT");
+} else {
+    // garante que a coluna comporta os textos longos
+    $conexao->query("ALTER TABLE conteudo MODIFY COLUMN explicacaoConteudo TEXT");
 }
 
 // ------------------------------------------------------
@@ -20,7 +20,7 @@ if ($resultado->num_rows == 0) {
 // ------------------------------------------------------
 
 $sql = <<<SQL
-INSERT IGNORE INTO conteudo
+INSERT INTO conteudo
 (idConteudo, idMateria, nomeConteudo, explicacaoConteudo)
 VALUES
 
@@ -175,6 +175,11 @@ OBSERVAR O CONTEXTO: analise as palavras ao redor de um termo desconhecido.
 IDENTIFICAR INFORMAÇÕES IMPORTANTES: procure nomes, lugares, datas e ações.
 
 O objetivo é compreender a mensagem principal do texto, e não necessariamente traduzir cada palavra.')
+
+ON DUPLICATE KEY UPDATE
+    idMateria = VALUES(idMateria),
+    nomeConteudo = VALUES(nomeConteudo),
+    explicacaoConteudo = VALUES(explicacaoConteudo)
 SQL;
 
 if (mysqli_query($conexao, $sql)) {
@@ -189,7 +194,7 @@ if (mysqli_query($conexao, $sql)) {
 // ------------------------------------------------------
 
 $sql = <<<SQL
-INSERT IGNORE INTO questao
+INSERT INTO questao
 (idQuestao, idConteudo, enunciadoQuestao,
 opcao1Questao, opcao2Questao, opcao3Questao, opcao4Questao,
 respostaCorretaQuestao, statusQuestao, classificacaoQuestao, xpQuestao)
@@ -354,6 +359,18 @@ VALUES
 'Translating only the title.',
 'Reading only the last sentence.',
 2, 1, 'Médio', 15)
+
+ON DUPLICATE KEY UPDATE
+    idConteudo = VALUES(idConteudo),
+    enunciadoQuestao = VALUES(enunciadoQuestao),
+    opcao1Questao = VALUES(opcao1Questao),
+    opcao2Questao = VALUES(opcao2Questao),
+    opcao3Questao = VALUES(opcao3Questao),
+    opcao4Questao = VALUES(opcao4Questao),
+    respostaCorretaQuestao = VALUES(respostaCorretaQuestao),
+    statusQuestao = VALUES(statusQuestao),
+    classificacaoQuestao = VALUES(classificacaoQuestao),
+    xpQuestao = VALUES(xpQuestao)
 SQL;
 
 if (mysqli_query($conexao, $sql)) {

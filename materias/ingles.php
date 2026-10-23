@@ -85,18 +85,10 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <?php if (empty($conteudos)): ?>
             <p class="texto">Nenhum conteúdo cadastrado ainda. Rode o instalardados.php.</p>
         <?php endif; ?>
-        <div class="hud">
         <?php
-        $caminhoAvatar = "../";
-        include "../avatar.php";
+            $caminhoAvatar = "../";
+            include "../hud.php";
         ?>
-        <div class="info">
-            <span class="textoPersonagem"><?= $nomePersonagem ?></span>
-            <div class="status">
-                <span class="textoPersonagem">❤️ <?= $vida ?></span>
-                <span class="textoPersonagem">🔥 <?= $sequencia ?></span>
-            </div>
-        </div>
     </div>
 </body>
 </html>

@@ -55,6 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             canvas {
                 image-rendering: pixelated;
             }
+            #game {
+                width: 450px;
+                height: 450px;
+                position: sticky;
+                top: 20px;
+            }
+            .boxpixelart {
+                height: auto;
+                min-height: 700px;
+                padding-bottom: 60px;
+            }
             .editorPixelArt {
                 display: flex;
                 gap: 30px;
@@ -98,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </label>
 
                     <div id="menuHeterocromia" style="display: none;">
-                        <labelfor="eyeColorRight" class=textoPersonagem>Cor do olho direito</label><br>
+                        <label for="eyeColorRight" class=textoPersonagem>Cor do olho direito</label><br>
                         <input type="color" id="eyeColorRight" value="#10B981">
                     </div>
 

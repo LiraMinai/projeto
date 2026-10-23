@@ -67,18 +67,9 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
     <button onclick="window.location.href='materias/portugues.php'">Português</button>
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
 </div>
-    <div class="hud">
-        <?php
+    <?php
         $caminhoAvatar = "";
-        include "avatar.php";
-        ?>
-        <div class="info">
-            <span class="textoPersonagem"><?= $nomePersonagem ?></span>
-            <div class="status">
-                <span class="textoPersonagem">❤️ <?= $vida ?></span>
-                <span class="textoPersonagem">🔥 <?= $sequencia ?></span>
-            </div>
-        </div>
-    </div>
+        include "hud.php";
+    ?>
 </body>
 </html>
