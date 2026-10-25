@@ -224,7 +224,16 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                         </optgroup>
                         <?php endif; ?>
                     </select>
-
+                    <?php if (itemLiberado('estampa1', $nivel)): ?>
+                    <select id="estampa">
+                        <option value="nenhuma">Nenhuma</option>
+                        <?= opcao('estampa1', 'Estampa 1', $nivel) ?>
+                        <?= opcao('estampa2', 'Estampa 2', $nivel) ?>
+                        <?= opcao('estampa3', 'Estampa 3', $nivel) ?>
+                        <?= opcao('estampa4', 'Estampa 4', $nivel) ?>
+                    </select>
+                    <?php endif; ?>
+                    <br>
                     <label for="sapatos" class=textoPersonagem>Sapatos</label>
                     <select id="sapatos">
                         <option value="nenhum">Nenhum</option>
@@ -236,17 +245,6 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                             <option value="sapatoPreto">Sapato Preto</option>
                         </optgroup>
                     </select>
-
-                    <?php if (itemLiberado('estampa1', $nivel)): ?>
-                    <select id="estampa">
-                        <option value="nenhuma">Nenhuma</option>
-                        <?= opcao('estampa1', 'Estampa 1', $nivel) ?>
-                        <?= opcao('estampa2', 'Estampa 2', $nivel) ?>
-                        <?= opcao('estampa3', 'Estampa 3', $nivel) ?>
-                        <?= opcao('estampa4', 'Estampa 4', $nivel) ?>
-                    </select>
-                    <?php endif; ?>
-
                     <?php if (itemLiberado('colarOuro', $nivel)): ?>
                     <label for="colar" class=textoPersonagem>Colar</label>
                     <select id="colar">
