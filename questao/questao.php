@@ -100,10 +100,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
         $feedback = 'correto';
         $quiz['acertos']++;
         $personagem['xpPersonagem'] += (int) $questaoDb['xpQuestao'];
-    } else {
-        $feedback = 'errado';
-        $personagem['vidaAtualPersonagem'] = max(0, $personagem['vidaAtualPersonagem'] - 5);
+    } 
+     else {
+    $feedback = 'errado';
+
+    $vidaAntesDaResposta = (int) $personagem['vidaAtualPersonagem'];
+    $vidaMaxima = (int) $personagem['vidaMaximaPersonagem'];
+
+    // Perde 5 pontos, sem permitir que a vida fique negativa.
+    $personagem['vidaAtualPersonagem'] = max(
+        0,
+        $vidaAntesDaResposta - 5
+    );
+
+    // Se estava com a vida cheia, começa uma nova contagem.
+    if ($vidaAntesDaResposta >= $vidaMaxima) {
+        $personagem['ultimaRecargaVidaPersonagem'] = date('Y-m-d H:i:s');
+
+        $stmtRecarga = $conexao->prepare(
+            "UPDATE personagem
+             SET ultimaRecargaVidaPersonagem = ?
+             WHERE idPersonagem = ?"
+        );
+
+        $stmtRecarga->bind_param(
+            "si",
+            $personagem['ultimaRecargaVidaPersonagem'],
+            $personagem['idPersonagem']
+        );
+
+        $stmtRecarga->execute();
+        $stmtRecarga->close();
     }
+}
+
 
     include "../nivel.php";
     $nivelAnterior = $personagem['nivelPersonagem'];
@@ -111,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
     $subiuDeNivel = $personagem['nivelPersonagem'] > $nivelAnterior;
 
     // Itens liberados por essa subida de nível (usados no popup)
-    require_once "../desbloqueios.php";
+    require_once "../desbloquear.php";
     $novosItens = $subiuDeNivel
         ? itensDesbloqueadosEntre($nivelAnterior, $personagem['nivelPersonagem'])
         : [];
@@ -236,6 +266,7 @@ $fimDoConteudo =
         <?php if (!$quiz['explicacaoVista']): ?>
         <div class="quiz-explicacao-inicial">
 
+
             <h1 class="tituloCad2">
                 <?= htmlspecialchars($conteudo['nomeConteudo']) ?>
             </h1>
@@ -251,6 +282,7 @@ $fimDoConteudo =
                     value="<?= $idConteudo ?>"
                 >
                 <br><br>
+            
                 <button type="submit" name="comecarQuiz">
                     Começar questões
                 </button>
@@ -271,7 +303,7 @@ $fimDoConteudo =
                 <button onclick="window.location.href='../materias/portugues.php'">Voltar para Português</button>
             </div>
 
-            <?php elseif ($idMateria == 2): ?>git config --global user.name "Seu Nome"
+            <?php elseif ($idMateria == 2): ?>
                 <div class="quiz-fim">
                 <h1 class="tituloCad2">Conteúdo concluído!</h1>
                 <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
@@ -342,6 +374,6 @@ $fimDoConteudo =
         <?php endif; ?>
 
     </div>
-
+    
 </body>
 </html>
