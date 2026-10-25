@@ -225,17 +225,7 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                         <?php endif; ?>
                     </select>
 
-                    <label for="sapatos" class=textoPersonagem>Sapatos</label>
-                    <select id="sapatos">
-                        <option value="nenhum">Nenhum</option>
-                        <optgroup label="Sapatos">
-                            <option value="sapatoAzul">Sapato Azul</option>
-                            <option value="sapatoBranco">Sapato Branco</option>
-                            <option value="sapatoMarrom">Sapato Marrom</option>
-                            <option value="sapatoVermelho">Sapato Vermelho</option>
-                            <option value="sapatoPreto">Sapato Preto</option>
-                        </optgroup>
-                        <?php if (itemLiberado('estampa1', $nivel)): ?>
+                    <?php if (itemLiberado('estampa1', $nivel)): ?>
                     <label for="estampa" class=textoPersonagem>Estampa</label>
                     <select id="estampa">
                         <option value="nenhuma">Nenhuma</option>
@@ -246,6 +236,17 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                     </select>
                     <?php endif; ?>
 
+                    <label for="sapatos" class=textoPersonagem>Sapatos</label>
+                    <select id="sapatos">
+                        <option value="nenhum">Nenhum</option>
+                        <optgroup label="Sapatos">
+                            <option value="sapatoAzul">Sapato Azul</option>
+                            <option value="sapatoBranco">Sapato Branco</option>
+                            <option value="sapatoMarrom">Sapato Marrom</option>
+                            <option value="sapatoVermelho">Sapato Vermelho</option>
+                            <option value="sapatoPreto">Sapato Preto</option>
+                        </optgroup>
+                    </select>
                     <?php if (itemLiberado('colarOuro', $nivel)): ?>
                     <label for="colar" class=textoPersonagem>Colar</label>
                     <select id="colar">
@@ -266,7 +267,6 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                         <?= opcao('lacoVermelho', 'Laço Vermelho', $nivel) ?>
                     </select>
                     <?php endif; ?>
-                    </select>
                 </div>
             </div>
             <br>
