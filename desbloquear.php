@@ -89,6 +89,13 @@ function itensDesbloqueadosEntre(int $de, int $ate): array {
     return $novos;
 }
 
+function nomeItem(string $item): string {
+    if (isset(NOMES_ESPECIAIS[$item])) {
+        return NOMES_ESPECIAIS[$item];
+    }
+    return preg_replace('/(?<!^)[A-Z0-9]/', ' $0', ucfirst($item));
+}
+
 function opcao(string $valor, string $texto, int $nivel): string {
     if (!itemLiberado($valor, $nivel)) {
         return '';
