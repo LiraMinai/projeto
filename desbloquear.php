@@ -6,13 +6,23 @@ const DESBLOQUEIOS = [
     5  => ['regataAmarela', 'regataAzul', 'regataBranca', 'regataPreta',
            'regataRoxa', 'regataVerde', 'regataVermelha'],
 
-    10  => ['estampa1', 'estampa2', 'estampa3', 'estampa4'],
+    10  => ['estampa1', 'estampa2'],
 
-    15  => ['saiaAzul', 'saiaBranca', 'saiaMarrom', 'saiaPreta', 'saiaRoxa'],
+    15 => ['estampa3', 'estampa4'],
 
-    20  => ['colarOuro', 'colarOuroDuplo', 'colarPrata', 'colarPrataDuplo'],
+    20 => ['saiaAzul', 'saiaBranca', 'saiaMarrom', 'saiaPreta', 'saiaRoxa'],
 
-    25 => ['lacoCaveira', 'lacoVermelho', 'boneDipper']
+    25 => ['lacoCaveira'],
+
+    30  => ['colarOuro'],
+
+    35 => ['lacoVermelho'],
+
+    40  => ['colarPrata'],
+
+    45 => ['boneDipper'],
+
+    50 => ['colarOuroDuplo', 'colarPrataDuplo']
 ];
 
 const NOMES_ESPECIAIS = [
