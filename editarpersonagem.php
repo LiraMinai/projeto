@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("conexao.php");
+require_once __DIR__ . "/desbloquear.php";
 
 if (!isset($_SESSION["idUsuario"])) {
     header("Location: entrar.php");
@@ -9,19 +10,34 @@ if (!isset($_SESSION["idUsuario"])) {
 
 $idUsuario = $_SESSION["idUsuario"];
 
-// Salvar: atualiza só a aparência (o nome do personagem não muda aqui)
+$stmt = $conexao->prepare("SELECT avatarPersonagem, xpPersonagem FROM personagem WHERE idUsuario = ?");
+$stmt->bind_param("i", $idUsuario);
+$stmt->execute();
+$personagem = $stmt->get_result()->fetch_assoc();
+
+if (!$personagem) {
+    header("Location: criacaopersonagem.php");
+    exit;
+}
+
+$avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
+$nivel = calcularNivel((int) $personagem["xpPersonagem"]);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $avatarPersonagem = json_encode([
-        "cabelo"           => $_POST["cabelo"] ?? "nenhum",
-        "corCabelo"        => $_POST["corCabelo"] ?? "#3B2A1A",
-        "corOlhoEsquerdo"  => $_POST["corOlhoEsquerdo"] ?? "#3B82F6",
-        "corOlhoDireito"   => $_POST["corOlhoDireito"] ?? "#10B981",
-        "heterocromia"     => ($_POST["heterocromia"] ?? "0") === "1",
-        "corPele"          => $_POST["corPele"] ?? "#F8DCC8",
-        "vitiligo"         => ($_POST["vitiligo"] ?? "0") === "1",
-        "roupaSuperior"    => $_POST["roupaSuperior"] ?? "nenhuma",
-        "roupaInferior"    => $_POST["roupaInferior"] ?? "nenhuma",
-        "sapato"           => $_POST["sapato"] ?? "nenhum",
+        "cabelo"          => $_POST["cabelo"] ?? "nenhum",
+        "corCabelo"       => $_POST["corCabelo"] ?? "#3B2A1A",
+        "corOlhoEsquerdo" => $_POST["corOlhoEsquerdo"] ?? "#3B82F6",
+        "corOlhoDireito"  => $_POST["corOlhoDireito"] ?? "#10B981",
+        "heterocromia"    => ($_POST["heterocromia"] ?? "0") === "1",
+        "corPele"         => $_POST["corPele"] ?? "#F8DCC8",
+        "vitiligo"        => ($_POST["vitiligo"] ?? "0") === "1",
+        "roupaSuperior"   => validarItem($_POST["roupaSuperior"] ?? "nenhuma", "nenhuma", $nivel),
+        "roupaInferior"   => validarItem($_POST["roupaInferior"] ?? "nenhuma", "nenhuma", $nivel),
+        "sapato"          => validarItem($_POST["sapato"] ?? "nenhum", "nenhum", $nivel),
+        "estampa"         => validarItem($_POST["estampa"] ?? "nenhuma", "nenhuma", $nivel),
+        "colar"           => validarItem($_POST["colar"] ?? "nenhum", "nenhum", $nivel),
+        "acessorioCabeca" => validarItem($_POST["acessorioCabeca"] ?? "nenhum", "nenhum", $nivel),
     ]);
 
     $stmt = $conexao->prepare("UPDATE personagem SET avatarPersonagem = ? WHERE idUsuario = ?");
@@ -34,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Erro ao salvar personagem: " . $stmt->error;
 }
 
-// Carrega a aparência atual pra já abrir o editor preenchido
 $stmt = $conexao->prepare("SELECT avatarPersonagem FROM personagem WHERE idUsuario = ?");
 $stmt->bind_param("i", $idUsuario);
 $stmt->execute();
@@ -171,6 +186,17 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                             <option value="camisetaVerde">Verde</option>
                             <option value="camisetaVermelha">Vermelha</option>
                         </optgroup>
+                        <?php if (itemLiberado('regataAzul', $nivel)): ?>
+                        <optgroup label="Regatas">
+                            <?= opcao('regataAmarela',  'Regata Amarela',  $nivel) ?>
+                            <?= opcao('regataAzul',     'Regata Azul',     $nivel) ?>
+                            <?= opcao('regataBranca',   'Regata Branca',   $nivel) ?>
+                            <?= opcao('regataPreta',    'Regata Preta',    $nivel) ?>
+                            <?= opcao('regataRoxa',     'Regata Roxa',     $nivel) ?>
+                            <?= opcao('regataVerde',    'Regata Verde',    $nivel) ?>
+                            <?= opcao('regataVermelha', 'Regata Vermelha', $nivel) ?>
+                        </optgroup>
+                        <?php endif; ?>
                     </select>
 
                     <label for="roupaInferior" class=textoPersonagem>Roupa inferior</label>
@@ -188,6 +214,15 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                             <option value="calcaMarrom">Calça Marrom</option>
                             <option value="calcaPreta">Calça Preta</option>
                         </optgroup>
+                        <?php if (itemLiberado('saiaAzul', $nivel)): ?>
+                        <optgroup label="Saias">
+                            <?= opcao('saiaAzul',   'Saia Azul',   $nivel) ?>
+                            <?= opcao('saiaBranca', 'Saia Branca', $nivel) ?>
+                            <?= opcao('saiaMarrom', 'Saia Marrom', $nivel) ?>
+                            <?= opcao('saiaPreta',  'Saia Preta',  $nivel) ?>
+                            <?= opcao('saiaRoxa',   'Saia Roxa',   $nivel) ?>
+                        </optgroup>
+                        <?php endif; ?>
                     </select>
 
                     <label for="sapatos" class=textoPersonagem>Sapatos</label>
@@ -200,6 +235,37 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                             <option value="sapatoVermelho">Sapato Vermelho</option>
                             <option value="sapatoPreto">Sapato Preto</option>
                         </optgroup>
+                        <?php if (itemLiberado('estampa1', $nivel)): ?>
+                    <label for="estampa" class=textoPersonagem>Estampa</label>
+                    <select id="estampa">
+                        <option value="nenhuma">Nenhuma</option>
+                        <?= opcao('estampa1', 'Estampa 1', $nivel) ?>
+                        <?= opcao('estampa2', 'Estampa 2', $nivel) ?>
+                        <?= opcao('estampa3', 'Estampa 3', $nivel) ?>
+                        <?= opcao('estampa4', 'Estampa 4', $nivel) ?>
+                    </select>
+                    <?php endif; ?>
+
+                    <?php if (itemLiberado('colarOuro', $nivel)): ?>
+                    <label for="colar" class=textoPersonagem>Colar</label>
+                    <select id="colar">
+                        <option value="nenhum">Nenhum</option>
+                        <?= opcao('colarOuro',        'Colar de Ouro',         $nivel) ?>
+                        <?= opcao('colarOuroDuplo',   '2º Colar de Ouro',   $nivel) ?>
+                        <?= opcao('colarPrata',       'Colar de Prata',        $nivel) ?>
+                        <?= opcao('colarPrataDuplo',  '2º Colar de Prata',  $nivel) ?>
+                    </select>
+                    <?php endif; ?>
+
+                    <?php if (itemLiberado('lacoCaveira', $nivel)): ?>
+                    <label for="acessorioCabeca" class=textoPersonagem>Acessório de cabeça</label>
+                    <select id="acessorioCabeca">
+                        <option value="nenhum">Nenhum</option>
+                        <?= opcao('lacoCaveira',  'Laço Caveira',  $nivel) ?>
+                        <?= opcao('boneDipper',   'Boné Dipper',   $nivel) ?>
+                        <?= opcao('lacoVermelho', 'Laço Vermelho', $nivel) ?>
+                    </select>
+                    <?php endif; ?>
                     </select>
                 </div>
             </div>
@@ -214,6 +280,9 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
             <input type="hidden" name="roupaSuperior" id="campoRoupaSuperior">
             <input type="hidden" name="roupaInferior" id="campoRoupaInferior">
             <input type="hidden" name="sapato" id="campoSapato">
+            <input type="hidden" name="estampa" id="campoEstampa">
+            <input type="hidden" name="colar" id="campoColar">
+            <input type="hidden" name="acessorioCabeca" id="campoAcessorioCabeca">
 
             
             <div class="centralizar" style="display:flex; gap:20px; justify-content:center;">

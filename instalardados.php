@@ -38,7 +38,8 @@ $sql = "INSERT IGNORE INTO materia
 (idMateria, idAnoEscolar, nomeMateria)
 VALUES
 (1, 1, 'Português'),
-(2, 1, 'Inglês')";
+(2, 1, 'Inglês'),
+(3, 1, 'Espanhol')";
 
 if (mysqli_query($conexao, $sql)) {
     echo "<p>✓ Matérias verificadas.</p>";
@@ -63,6 +64,13 @@ echo "<p>Carregando Inglês...</p>";
 include("dados/dadosingles.php");
 
 echo "<p>✓ Inglês carregado.</p>";
+
+
+echo "<p>Carregando Espanhol...</p>";
+
+include("dados/dadosespanhol.php");
+
+echo "<p>✓ Espanhol carregado.</p>";
 
 
 // ======================================================

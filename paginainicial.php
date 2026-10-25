@@ -68,6 +68,7 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
 <div class="materias">
     <button onclick="window.location.href='materias/portugues.php'">Português</button>
     <button onclick="window.location.href='materias/ingles.php'">Inglês</button>
+    <button onclick="window.location.href='materias/espanhol.php'">Espanhol</button>
 </div>
     <?php
         $caminhoAvatar = "";
