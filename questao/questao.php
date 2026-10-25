@@ -265,11 +265,18 @@ $fimDoConteudo =
                 <button onclick="window.location.href='../materias/portugues.php'">Voltar para Português</button>
             </div>
 
-            <?php elseif ($idMateria == 2): ?>
+            <?php elseif ($idMateria == 2): ?>git config --global user.name "Seu Nome"
                 <div class="quiz-fim">
                 <h1 class="tituloCad2">Conteúdo concluído!</h1>
                 <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
                 <button onclick="window.location.href='../materias/ingles.php'">Voltar para Inglês</button>
+            </div>
+
+            <?php elseif ($idMateria == 3): ?>
+                <div class="quiz-fim">
+                <h1 class="tituloCad2">Conteúdo concluído!</h1>
+                <p class="texto">Você acertou <?= $quiz['acertos'] ?> de <?= count($quiz['respondidas']) ?> perguntas.</p>
+                <button onclick="window.location.href='../materias/espanhol.php'">Voltar para Espanhol</button>
             </div>
 
         <?php endif; ?>
