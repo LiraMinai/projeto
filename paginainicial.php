@@ -37,6 +37,8 @@ $vida = recarregarVida(
     $dados["vidaMaximaPersonagem"],
     $dados["ultimaRecargaVidaPersonagem"]
 );
+$vidaMaxima = (int) $dados["vidaMaximaPersonagem"];
+$ultimaRecarga = $dados["ultimaRecargaVidaPersonagem"];
 
 $sequencia       = $dados["sequenciaCheckinUsuario"];
 include "checkin.php";
