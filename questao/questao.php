@@ -110,6 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
     $personagem['nivelPersonagem'] = calcularNivel($personagem['xpPersonagem']);
     $subiuDeNivel = $personagem['nivelPersonagem'] > $nivelAnterior;
 
+    // Itens liberados por essa subida de nível (usados no popup)
+    require_once "../desbloqueios.php";
+    $novosItens = $subiuDeNivel
+        ? itensDesbloqueadosEntre($nivelAnterior, $personagem['nivelPersonagem'])
+        : [];
+
     // Salva vida, xp e nível atualizados no banco
     $stmt = $conexao->prepare("UPDATE personagem SET vidaAtualPersonagem = ?, xpPersonagem = ?, nivelPersonagem = ? WHERE idPersonagem = ?");
     $stmt->bind_param("iiii", $personagem['vidaAtualPersonagem'], $personagem['xpPersonagem'], $personagem['nivelPersonagem'], $personagem['idPersonagem']);
@@ -303,7 +309,11 @@ $fimDoConteudo =
                 <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
 
                 <?php if (!empty($subiuDeNivel)): ?>
-                    <p class="quiz-explicacao">Você subiu para o nível <?= $personagem['nivelPersonagem'] ?>!</p>
+                    <?php
+                        $nivelNovo   = $personagem['nivelPersonagem'];
+                        $caminhoRaiz = "../";
+                        include "../levelup.php";
+                    ?>
                 <?php endif; ?>
 
                 <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
