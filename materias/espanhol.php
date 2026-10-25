@@ -74,7 +74,12 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         </div>
         <h1 class="tituloCad2">ESPANHOL</h1>
     </header>
-
+    <button
+        type="button"
+        class="botaoVoltar"
+        onclick="window.location.href='../paginainicial.php'">
+        ← Voltar às matérias
+    </button>
     <div class="materias">
         <?php foreach ($conteudos as $c): ?>
             <button onclick="window.location.href='../questao/questao.php?conteudo=<?= $c['idConteudo'] ?>'">

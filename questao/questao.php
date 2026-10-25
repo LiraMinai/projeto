@@ -261,6 +261,26 @@ $fimDoConteudo =
         </div>
         <h1 class="tituloCad2">QUESTÕES</h1>
     </header>
+    
+<?php
+if ($idMateria == 1) {
+    $linkVoltar = "../materias/portugues.php";
+} elseif ($idMateria == 2) {
+    $linkVoltar = "../materias/ingles.php";
+} elseif ($idMateria == 3) {
+    $linkVoltar = "../materias/espanhol.php";
+} else {
+    $linkVoltar = "../paginainicial.php";
+}
+?>
+
+<button
+    type="button"
+    class="botaoVoltar"
+    onclick="window.location.href='<?= htmlspecialchars($linkVoltar, ENT_QUOTES, 'UTF-8') ?>'">
+    ← Voltar aos conteúdos
+</button>
+
 
     <div class="quiz-box">
         <?php if (!$quiz['explicacaoVista']): ?>
