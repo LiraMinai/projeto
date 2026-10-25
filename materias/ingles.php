@@ -42,6 +42,8 @@ $vida = recarregarVida(
     $dados["vidaMaximaPersonagem"],
     $dados["ultimaRecargaVidaPersonagem"]
 );
+$vidaMaxima = (int) $dados["vidaMaximaPersonagem"];
+$ultimaRecarga = $dados["ultimaRecargaVidaPersonagem"];
 
 $sequencia       = $dados["sequenciaCheckinUsuario"];
 include "../checkin.php";
@@ -90,10 +92,10 @@ $conteudos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <?php if (empty($conteudos)): ?>
             <p class="texto">Nenhum conteúdo cadastrado ainda. Rode o instalardados.php.</p>
         <?php endif; ?>
-        <?php
-            $caminhoAvatar = "../";
-            include "../hud.php";
-        ?>
     </div>
+    <?php
+    $caminhoAvatar = "../";
+    include "../hud.php";
+    ?>
 </body>
 </html>

@@ -1,25 +1,27 @@
 
+
 <?php
-// hud.php — barra inferior do personagem.
 require_once __DIR__ . "/nivel.php";
 
 $progresso = progressoNivel((int) $xp);
 
-$vidaMaxima = $vidaMaxima ?? 50;
+$vida = (int) ($vida ?? 0);
+$vidaMaxima = (int) ($vidaMaxima ?? 50);
 $ultimaRecarga = $ultimaRecarga ?? null;
 
-// Calcula quantos segundos faltam para a próxima recuperação.
 $tempoRestante = 0;
 
 if ($vida < $vidaMaxima && !empty($ultimaRecarga)) {
-    $agora = time();
     $ultima = strtotime($ultimaRecarga);
-    $intervalo = 30 * 60;
 
-    $proximoInstante = $ultima + $intervalo;
-    $tempoRestante = max(0, $proximoInstante - $agora);
+    if ($ultima !== false) {
+        $intervalo = 30 * 60;
+        $proximoInstante = $ultima + $intervalo;
+        $tempoRestante = max(0, $proximoInstante - time());
+    }
 }
 ?>
+
 
 <div class="hud">
     <?php include __DIR__ . "/avatar.php"; ?>
@@ -75,6 +77,7 @@ if ($vida < $vidaMaxima && !empty($ultimaRecarga)) {
     </a>
 </div>
 
+
 <script>
 (() => {
     const contador = document.getElementById("contadorVida");
@@ -82,14 +85,12 @@ if ($vida < $vidaMaxima && !empty($ultimaRecarga)) {
 
     if (!contador || !tempo) return;
 
-    let segundos = Number(contador.dataset.segundos);
+    let segundos = Math.max(
+        0,
+        Number(contador.dataset.segundos) || 0
+    );
 
     function atualizarContador() {
-        if (segundos <= 0) {
-            tempo.textContent = "00:00";
-            return;
-        }
-
         const minutos = Math.floor(segundos / 60);
         const segundosRestantes = segundos % 60;
 
@@ -97,10 +98,13 @@ if ($vida < $vidaMaxima && !empty($ultimaRecarga)) {
             String(minutos).padStart(2, "0") + ":" +
             String(segundosRestantes).padStart(2, "0");
 
-        segundos--;
+        if (segundos > 0) {
+            segundos--;
+        }
     }
 
     atualizarContador();
     setInterval(atualizarContador, 1000);
 })();
 </script>
+

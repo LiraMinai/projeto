@@ -47,6 +47,22 @@ $sequencia = verificarCheckin($conexao, $id, $dados['ultimoCheckinUsuario'], $se
 $nivel           = $dados["nivelPersonagem"];
 $xp              = $dados["xpPersonagem"];
 $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
+
+
+$recompensasPendentes = $_SESSION['recompensasPendentes'] ?? [];
+$mostrarLevelup = !empty($recompensasPendentes);
+
+if ($mostrarLevelup) {
+    $nivelNovo = max(array_keys($recompensasPendentes));
+
+    $novosItens = [];
+    foreach ($recompensasPendentes as $itens) {
+        $novosItens = array_merge($novosItens, $itens);
+    }
+
+    $caminhoRaiz = "";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -74,5 +90,12 @@ $avatar          = json_decode($dados["avatarPersonagem"], true) ?? [];
         $caminhoAvatar = "";
         include "hud.php";
     ?>
+    
+<?php if ($mostrarLevelup): ?>
+    <?php include "desbloquear.php"; ?>
+    <?php include "levelup.php"; ?>
+    <?php unset($_SESSION['recompensasPendentes']); ?>
+<?php endif; ?>
+
 </body>
 </html>

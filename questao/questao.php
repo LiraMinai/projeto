@@ -141,10 +141,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['resposta'])) {
     $subiuDeNivel = $personagem['nivelPersonagem'] > $nivelAnterior;
 
     // Itens liberados por essa subida de nível (usados no popup)
-    require_once "../desbloquear.php";
-    $novosItens = $subiuDeNivel
-        ? itensDesbloqueadosEntre($nivelAnterior, $personagem['nivelPersonagem'])
-        : [];
+    
+require_once "../desbloquear.php";
+
+$novosItens = $subiuDeNivel
+    ? itensDesbloqueadosEntre(
+        $nivelAnterior,
+        $personagem['nivelPersonagem']
+    )
+    : [];
+
+// Guarda a recompensa para mostrar na página inicial.
+if ($subiuDeNivel) {
+    if (!isset($_SESSION['recompensasPendentes'])) {
+        $_SESSION['recompensasPendentes'] = [];
+    }
+
+    if (!empty($novosItens)) {
+        $_SESSION['recompensasPendentes'][
+            $personagem['nivelPersonagem']
+        ] = $novosItens;
+    }
+}
+
 
     // Salva vida, xp e nível atualizados no banco
     $stmt = $conexao->prepare("UPDATE personagem SET vidaAtualPersonagem = ?, xpPersonagem = ?, nivelPersonagem = ? WHERE idPersonagem = ?");
@@ -360,13 +379,7 @@ if ($idMateria == 1) {
             <div class="quiz-feedback quiz-<?= $feedback ?>">
                 <strong><?= $feedback === 'correto' ? 'Resposta correta!' : 'Resposta errada.' ?></strong>
 
-                <?php if (!empty($subiuDeNivel)): ?>
-                    <?php
-                        $nivelNovo   = $personagem['nivelPersonagem'];
-                        $caminhoRaiz = "../";
-                        include "../levelup.php";
-                    ?>
-                <?php endif; ?>
+                
 
                 <?php if (!empty($conteudo['explicacaoConteudo'])): ?>
                     <p class="quiz-explicacao"><?= nl2br(htmlspecialchars($conteudo['explicacaoConteudo'])) ?></p>
@@ -394,6 +407,7 @@ if ($idMateria == 1) {
         <?php endif; ?>
 
     </div>
+        </div>
     
 </body>
 </html>
