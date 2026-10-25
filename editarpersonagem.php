@@ -224,7 +224,9 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                         </optgroup>
                         <?php endif; ?>
                     </select>
+
                     <?php if (itemLiberado('estampa1', $nivel)): ?>
+                    <label for="estampa" class=textoPersonagem>Estampa</label>
                     <select id="estampa">
                         <option value="nenhuma">Nenhuma</option>
                         <?= opcao('estampa1', 'Estampa 1', $nivel) ?>
@@ -233,7 +235,7 @@ $avatarAtual = json_decode($personagem["avatarPersonagem"], true) ?? [];
                         <?= opcao('estampa4', 'Estampa 4', $nivel) ?>
                     </select>
                     <?php endif; ?>
-                    <br>
+
                     <label for="sapatos" class=textoPersonagem>Sapatos</label>
                     <select id="sapatos">
                         <option value="nenhum">Nenhum</option>
