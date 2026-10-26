@@ -1,29 +1,3 @@
-<?php
-session_start();
-include("conexao.php");
-
-if (!isset($_SESSION["idUsuario"])) {
-    header("Location: entrar.php");
-    exit;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $idUsuario = $_SESSION["idUsuario"];
-    $nomePersonagem = $_POST["nomePersonagem"];
-    $avatarPersonagem = json_encode([
-        "cabelo"           => $_POST["cabelo"] ?? "nenhum",
-        "corCabelo"        => $_POST["corCabelo"] ?? "#3B2A1A",
-        "corOlhoEsquerdo"  => $_POST["corOlhoEsquerdo"] ?? "#3B82F6",
-        "corOlhoDireito"   => $_POST["corOlhoDireito"] ?? "#10B981",
-        "heterocromia"     => ($_POST["heterocromia"] ?? "0") === "1",
-        "corPele"          => $_POST["corPele"] ?? "#F8DCC8",
-        "vitiligo"         => ($_POST["vitiligo"] ?? "0") === "1",
-        "roupaSuperior"    => $_POST["roupaSuperior"] ?? "nenhuma",
-        "roupaInferior"    => $_POST["roupaInferior"] ?? "nenhuma",
-        "sapato"           => $_POST["sapato"] ?? "nenhum",
-    ]);
-
-    $sql = "INSERT INTO personagem 
     (idUsuario, nomePersonagem, avatarPersonagem, ultimaRecargaVidaPersonagem)
     VALUES (?, ?, ?, NOW())";
 
@@ -86,9 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <h1 class="tituloCad3">CRIE SEU PERSONAGEM</h1>
     </header>
-       
-
-        <div class="boxpixelart">
+    
+     <div class="boxpixelart">
         <form method="POST">
             <div class="criacaoPersonagem">
                 <label class="textoPersonagem">Nome do personagem:</label><br>
@@ -127,8 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label class=textoPersonagem>
                         <label class='lblcheck'>Vitiligo</label>
                         <input type="checkbox" id="vitiligo">
-                         
-                    </label>
+
+                        </label>
 
                     <label for="cabelos" class=textoPersonagem>Cabelo</label>
                     <select id="cabelos">
@@ -178,6 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="bermudaMarrom">Bermuda Marrom</option>
                             <option value="bermudaPreta">Bermuda Preta</option>
                         </optgroup>
+
                         <optgroup label="Calças"> 
                             <option value="calcaAzul">Calça Azul</option>
                             <option value="calcaBranca">Calça Branca</option>
