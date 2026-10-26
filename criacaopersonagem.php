@@ -91,9 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="boxpixelart">
         <form method="POST">
             <div class="criacaoPersonagem">
-                <label class="textodif">Nome do personagem:</label><br>
+                <label class="textoPersonagem">Nome do personagem:</label><br>
                 <input type="text" name="nomePersonagem" required>
-            </div>
+        </div>
 
             <div class="editorPixelArt">
                 <canvas id="game" width="300" height="300"></canvas>
