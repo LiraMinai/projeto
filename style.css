@@ -581,13 +581,12 @@ select{
 
 /*Centralizar texto explicativo*/
 
-.conteudoExplicativo {
+.quiz-explicacao-inicial {
     display: flex;
     flex-direction: column;
-    align-items: center;   /* centraliza horizontalmente os filhos */
-    text-align: center;    /* centraliza o texto de dentro */
+    align-items: center;   /* centraliza título, texto e botão */
+    text-align: center;
     width: 100%;
-    max-width: 700px;      /* largura do bloco de texto */
+    max-width: 700px;
     margin: 0 auto;        /* centraliza o bloco na página */
-    padding: 40px 20px;
 }
